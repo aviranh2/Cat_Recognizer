@@ -22,7 +22,7 @@ module cat_recognizer (PADDR,PENABLE,PSEL,PWDATA,PWRITE,clk,rst,PRDATA,CatRecOut
   output[Amba_Word-1:0] PRDATA;
   output CatRecOut;
   
-  wire en_write, en_read, temp;
+  wire en_write, en_read;
   wire [DATA_WIDTH-1:0]		 		pixels_bus, control_reg, b;
   wire [Weight_Percision-1:0] 		weights_bus;
   
@@ -80,14 +80,16 @@ module cat_recognizer (PADDR,PENABLE,PSEL,PWDATA,PWRITE,clk,rst,PRDATA,CatRecOut
 	begin
 	if(control_reg[0]) // start calc is on
 		if(address[Amba_Addr_Depth])//finish calc
-			en_read 		 <= 1'b0;
-			read_address	 <= {Amba_Addr_Depth{1'b0}}; //reset read address
+			en_read 							 <= 1'b0;
+			read_address[Amba_Addr_Depth:1]	 	 <= {Amba_Addr_Depth{1'b0}}; //reset read address
+			read_address[0]						 <= 1'b1;
 		else // didnt finish calc yet
 			en_read 		<= 1'b1;
 			read_address 	<= address + 1;
-		mem_address 		<= read_address[Amba_Addr_Depth-1] // read mode
+		mem_address 		<= read_address[Amba_Addr_Depth-1:0] // read mode
 	else // in write mode
-		read_address <= {Amba_Addr_Depth{1'b0}};
+		read_address[Amba_Addr_Depth:1]	 	 <= {Amba_Addr_Depth{1'b0}}; //reset read address
+		read_address[0]						 <= 1'b1;
 		en_read 	 <= 1'b0;  
 		mem_address  <= PADDR; //write mode
 	end

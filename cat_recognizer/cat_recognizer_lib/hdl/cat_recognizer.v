@@ -10,7 +10,7 @@
 
 `resetall
 `timescale 1ns/10ps
-module CatRecognizer (PADDR,PENABLE,PSEL,PWDATA,PWRITE,clk,rst,PRDATA,CatRecOut,w_in);
+module cat_recognizer (PADDR,PENABLE,PSEL,PWDATA,PWRITE,clk,rst,PRDATA,CatRecOut,w_in);
   parameter Amba_Word = 24;
   parameter Amba_Addr_Depth = 12;
   parameter Weightrecision = 5;

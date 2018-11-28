@@ -20,35 +20,37 @@ module NeuronCalculator(x,b,w,clock,reset,enable,get_result,out);
 	output out;
 	
 	reg signed [31:0] pixelw1,pixelw2,pixelw3;
-	reg signed [127:0] acc;
+	reg signed [64:0] acc;
 	reg [15:0] w_ext1,w_ext2,w_ext3;
-
 	
 	always @(posedge clock)
 	begin
 	if(reset)
-		acc <= 32'h00000000;
+		acc <= 64'h0000000000000000;
+		out <= 1'b0;
+	else if (get_result)
+		out <= (acc - b > 0);
+		acc <= 64'h0000000000000000;
 	else if(enable)
 		acc <= acc + pixelw3 + pixelw2 + pixelw1;
-	
-	
+		out <= 1'b0;
 	end
 	
 	always @(x,w)
 	begin
-	w_ext1[15:0] <= { {(16-Weight_Percision){w[Weight_Percision-1]}}, w[Weight_Percision-1:0] };
-	w_ext2[15:0] <= { {(16-Weight_Percision){w[2*Weight_Percision-1]}}, w[2*Weight_Percision-1:Weight_Percision] };
-	w_ext3[15:0] <= { {(16-Weight_Percision){w[3*Weight_Percision-1]}}, w[3*Weight_Percision-1:2*Weight_Percision] };
+	w_ext1[15:0] = { {(16-Weight_Percision){w[Weight_Percision-1]}}, w[Weight_Percision-1:0] };
+	w_ext2[15:0] = { {(16-Weight_Percision){w[2*Weight_Percision-1]}}, w[2*Weight_Percision-1:Weight_Percision] };
+	w_ext3[15:0] = { {(16-Weight_Percision){w[3*Weight_Percision-1]}}, w[3*Weight_Percision-1:2*Weight_Percision] };
 	end
 	
 	Neuron neuron1( 
-	.x    ( x[7:0]       ), // input
+	.x    ( x[7:0] ), // input
 	.w    ( w_ext1 ), // input
 	.out ( pixelw1 )
 	);
 	
 	Neuron neuron2( 
-	.x    ( x[15:8]       ), // input
+	.x    ( x[15:8] ), // input
 	.w    ( w_ext2 ), // input
 	.out ( pixelw2 )
 	);

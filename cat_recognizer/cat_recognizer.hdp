@@ -1,3 +1,5 @@
+[DesignChecker]
+cat_recognizer_lib = $HDS_PROJECT_DIR\cat_recognizer_lib\designcheck
 [ModelSim]
 cat_recognizer_lib = $HDS_PROJECT_DIR\cat_recognizer_lib\work
 [hdl]

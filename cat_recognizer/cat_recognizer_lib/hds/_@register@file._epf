@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom RegisterFile
+DEFAULT_FILE atom RegisterFile.v

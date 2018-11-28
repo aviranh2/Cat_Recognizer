@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom NeuronCalculator
+DEFAULT_FILE atom NeuronCalculator.v

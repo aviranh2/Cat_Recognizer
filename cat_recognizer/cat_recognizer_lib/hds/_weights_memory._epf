@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom weights_memory
+DEFAULT_FILE atom weights_memory.v

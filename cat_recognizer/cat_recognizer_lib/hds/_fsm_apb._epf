@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom fsm_apb
+DEFAULT_FILE atom fsm_apb.v

@@ -1,1 +1,1 @@
- -L cat_recognizer_lib -l transcript.txt -i -t ns -multisource_delay latest +typdelays cat_recognizer_lib.fsm_apb_tb
+ -L cat_recognizer_lib -l transcript.txt -i -t ns -multisource_delay latest +typdelays cat_recognizer_lib.cat_recognizer_tb

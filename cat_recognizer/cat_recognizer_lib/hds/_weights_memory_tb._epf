@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom weights_memory_tb
+DEFAULT_FILE atom weights_memory_tb_tb_rtl.v

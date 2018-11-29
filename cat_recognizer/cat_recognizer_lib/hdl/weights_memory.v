@@ -16,26 +16,28 @@ module weights_memory(clock,reset,address,en_read,data_out);
   
   input wire clock,reset,en_read;
   input [Addr_Depth-1:0] address;
-  output [DATA_WIDTH-1:0] data_out;
+  output [3*DATA_WIDTH-1:0] data_out;
 
   
 reg signed [3*DATA_WIDTH-1:0] M[(2**Addr_Depth)-1:0];
-reg [DATA_WIDTH-1:0] out_val;
+reg [3*DATA_WIDTH-1:0] out_val;
 
 
 always @(posedge clock,posedge reset)
-begin
+begin : MAIN_BLOCK
 	if(reset)
 	begin
 	//`include "C:/Users/amitb/Desktop/UNIV/year4/logi/ass/ass1/cat_recognizer/CatRecognizer/CatRecognizer_lib/hdl/weights5.v"
-	  `include "../hdl/weights5.v"
+	//  `include "../hdl/weights5.v"
 	end
 	else if(en_read)
+	  begin
 		out_val <= M[address];//read from register
-		
+		end
 	else 
-         out_val <= {DATA_WIDTH{1'bz}};//give nothing in output if not requested
-		
+	  begin
+         out_val <= {3*DATA_WIDTH{1'bz}};//give nothing in output if not requested
+		end
 
 end
 

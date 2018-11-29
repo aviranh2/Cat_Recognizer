@@ -10,7 +10,15 @@
 
 `resetall
 `timescale 1ns/10ps
-module cat_recognizer (PADDR,PENABLE,PSEL,PWDATA,PWRITE,clk,rst,PRDATA,CatRecOut,w_in);
+module cat_recognizer (PADDR,
+PENABLE,
+PSEL,
+PWDATA,
+PWRITE,
+clk,
+rst,
+PRDATA,
+CatRecOut,);
   parameter Amba_Word = 24;
   parameter Amba_Addr_Depth = 12;
   parameter Weightrecision = 5;
@@ -18,31 +26,36 @@ module cat_recognizer (PADDR,PENABLE,PSEL,PWDATA,PWRITE,clk,rst,PRDATA,CatRecOut
   input wire PENABLE,PSEL,PWRITE,clk,rst;
   input [Amba_Addr_Depth-1:0] PADDR;
   input [Amba_Word-1:0] PWDATA;
-  input [Weight_Percision-1:0] w_in;
+  //input [Weight_Percision-1:0] w_in;
   output[Amba_Word-1:0] PRDATA;
   output CatRecOut;
   
-  wire en_write, en_read;
-  wire [DATA_WIDTH-1:0]		 		pixels_bus, control_reg, b;
-  wire [Weight_Percision-1:0] 		weights_bus;
+  reg[0:0]  en_read;
+  wire [Amba_Word-1:0]		 		pixels_bus;
+  wire control_reg;
+  wire [3*Weightrecision-1:0] 		weights_bus;
   
-  reg [Amba_Word-1:0] b;
   reg [Amba_Addr_Depth:0] read_address;
   reg [Amba_Addr_Depth-1:0] mem_address;
+  
+  assign PRDATA = 1'h000000;
+  //wire enable_write;
+ // assign enable_write = en_write;
+  //`include "../bias5.v"
   
   fsm_apb apb_interface(
 	.pclock 	( clk ),
 	.psel		( PSEL ),
 	.penable	( PENABLE ),
-	.enable 	( en_write )
+	.enable 	( PWRITE )
   );
-  
+ //   assign PWRITE = PSEL | PENABLE;
   RegisterFile #(
 	.DATA_WIDTH(Amba_Word), 
 	.Addr_Depth(Amba_Addr_Depth))
   pixel_mem(
 	.clock		(clk),
-	.en_write	(en_write),
+	.en_write	(PWRITE),
 	.en_read	(en_read),
 	.address	(mem_address),
 	.data_in	(PWDATA),
@@ -69,29 +82,40 @@ module cat_recognizer (PADDR,PENABLE,PSEL,PWDATA,PWRITE,clk,rst,PRDATA,CatRecOut
 	.clock		(clk),
 	.reset		(rst),
 	.enable		(en_read),
-	.get_result	(address[Amba_Addr_Depth),
+	.get_result	(read_address[Amba_Addr_Depth]),
 	.x			(pixels_bus),
-	.b			(),  // need to connect b
 	.w			(weights_bus),
-	.out		(CatRecOut)
+	.out1		(CatRecOut)
 	);
+	
 
-	always @(posedge clock)
+  
+
+	always @(posedge clk)
+	begin: MAIN_BLOCK
+	if(control_reg) // start calc is on
 	begin
-	if(control_reg[0]) // start calc is on
-		if(address[Amba_Addr_Depth])//finish calc
+	//  en_write 	 <= 1'b0;//am i right?(amit)
+		if(read_address[Amba_Addr_Depth])//finish calc
+		begin
 			en_read 							 <= 1'b0;
 			read_address[Amba_Addr_Depth:1]	 	 <= {Amba_Addr_Depth{1'b0}}; //reset read address
 			read_address[0]						 <= 1'b1;
+			end
 		else // didnt finish calc yet
+		begin
 			en_read 		<= 1'b1;
-			read_address 	<= address + 1;
-		mem_address 		<= read_address[Amba_Addr_Depth-1:0] // read mode
+			read_address 	<= read_address + 1;
+		mem_address 		<= read_address[Amba_Addr_Depth-1:0]; // read mode
+		end
+		end
 	else // in write mode
+	begin
 		read_address[Amba_Addr_Depth:1]	 	 <= {Amba_Addr_Depth{1'b0}}; //reset read address
 		read_address[0]						 <= 1'b1;
-		en_read 	 <= 1'b0;  
+	//	en_write 	 <= 1'b0;  //***am i right?(amit)
 		mem_address  <= PADDR; //write mode
+		end
 	end
 	
 endmodule

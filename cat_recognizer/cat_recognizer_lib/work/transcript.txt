@@ -1,0 +1,51 @@
+# vsim -L cat_recognizer_lib -l transcript.txt -i -multisource_delay latest -t ns +typdelays -foreign {hdsInit C:/MentorGraphics/HDS_2012.1/resources/downstream/modelsim/ModelSim_32Bit.dll} -pli {"C:/MentorGraphics/HDS_2012.1/resources/downstream/modelsim/ModelSim_32Bit.dll"} cat_recognizer_lib.cat_recognizer_tb 
+# Loading C:/MentorGraphics/HDS_2012.1/resources/downstream/modelsim/ModelSim_32Bit.dll
+# Loading cat_recognizer_lib.cat_recognizer_tb
+# Loading cat_recognizer_lib.cat_recognizer
+# Loading cat_recognizer_lib.fsm_apb
+# Loading cat_recognizer_lib.RegisterFile
+# Loading cat_recognizer_lib.weights_memory
+# Loading cat_recognizer_lib.NeuronCalculator
+# Loading cat_recognizer_lib.Neuron
+# Loading cat_recognizer_lib.cat_recognizer_tester
+# ** Warning: (vsim-3017) C:/Users/amitb/Desktop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/hdl/cat_recognizer_tb_tb_rtl.v(42): [TFMPC] - Too few port connections. Expected 10, found 9.
+# 
+#         Region: /cat_recognizer_tb/U_0
+# ** Warning: Design size of 8 instances exceeds ModelSim ALTERA recommended capacity.
+# This may because you are loading cell libraries which are not recommended with
+# the ModelSim Altera version. Expect performance to be adversely affected.
+add wave -position insertpoint sim:/cat_recognizer_tb/*
+add wave -position insertpoint  \
+sim:/cat_recognizer_tb/rst
+add wave -position insertpoint  \
+sim:/cat_recognizer_tb/rst
+add wave -position insertpoint  \
+sim:/cat_recognizer_tb/clk
+add wave -position insertpoint  \
+sim:/cat_recognizer_tb/U_0/b
+run
+add wave -position insertpoint  \
+sim:/cat_recognizer_tb/U_0/PSEL
+run
+# 0
+# 
+add wave -position insertpoint  \
+sim:/cat_recognizer_tb/U_0/PENABLE
+run
+add wave -position insertpoint  \
+sim:/cat_recognizer_tb/U_0/calculator/b
+run
+restart -f
+# Loading C:/MentorGraphics/HDS_2012.1/resources/downstream/modelsim/ModelSim_32Bit.dll
+# ** Warning: (vsim-3017) C:/Users/amitb/Desktop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/hdl/cat_recognizer_tb_tb_rtl.v(42): [TFMPC] - Too few port connections. Expected 10, found 9.
+# 
+#         Region: /cat_recognizer_tb/U_0
+run
+add wave -position insertpoint  \
+sim:/cat_recognizer_tb/U_0/weight_mem/M
+restart -f
+# Loading C:/MentorGraphics/HDS_2012.1/resources/downstream/modelsim/ModelSim_32Bit.dll
+# ** Warning: (vsim-3017) C:/Users/amitb/Desktop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/hdl/cat_recognizer_tb_tb_rtl.v(42): [TFMPC] - Too few port connections. Expected 10, found 9.
+# 
+#         Region: /cat_recognizer_tb/U_0
+run

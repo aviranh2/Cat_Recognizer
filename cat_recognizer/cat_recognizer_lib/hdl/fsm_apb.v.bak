@@ -10,51 +10,62 @@
 
 `resetall
 `timescale 1ns/10ps
-module fsm_apb (output reg enable, input pclock, psel, penable);
+module fsm_apb (
+output reg enable, 
+input pclock, 
+psel, 
+penable);
 parameter[1:0]  IDLE = 2'b00,
                 SETUP = 2'b01,
                 ENABLE = 2'b10;
-reg[1:0] state, next;
+reg[1:0] current_state, next_state;
 reg next_enable;
 
-always @(posedge pclock) begin
-if(!psel) begin
-    state <= IDLE;
+always @(posedge pclock) begin : FIRST_BLOCK
+if(!psel)
+ begin
+    current_state <= IDLE;
     enable <= 1'b0;
     end
-else begin
-    state <= next;
+else 
+begin
+    current_state <= next_state;
     enable <= next_enable;
     end
 end
 
-always @(penable or psel) begin
-case (state)
+always @(penable or psel or current_state) begin : SECOND_BLOCK
+case (current_state)
+    default: begin
+          //next_state = IDLE;
+          next_enable = 1'b0;
+        end 
   IDLE: begin 
         if(psel)
-          next = SETUP;
+          next_state = SETUP;
         else
-          next = IDLE;
+          next_state = IDLE;
         next_enable = 1'b0;
       end
   SETUP: begin
         if(penable)
-          next = ENABLE;
+          next_state = ENABLE;
         else
-          next = SETUP;
+          next_state = SETUP;
         next_enable = 1'b0;
         end
   ENABLE: begin
         if(psel)
-          next = SETUP;
-        else
-          next = IDLE;
-        next_enable = 1'b1;
+          begin
+          next_state = SETUP;
         end
-  default: begin
-          next = IDLE;
-          next_enable = 1'b0;
-        end 
+        else
+          begin
+          next_state = IDLE;
+        next_enable = 1'b1;
+      end
+        end
+
 endcase
 end
 endmodule

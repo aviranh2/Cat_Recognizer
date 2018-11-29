@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom cat_recognizer_tester
+DEFAULT_FILE atom cat_recognizer_tester_rtl.v

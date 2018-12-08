@@ -25,6 +25,7 @@ module cat_recognizer_tester (PADDR,
 parameter Amba_Word = 24;
 parameter Amba_Addr_Depth = 12;
 parameter Weightrecision = 5;
+parameter file_length = 4095;
 
 
 output PADDR;
@@ -37,11 +38,11 @@ output rst;
 input  PRDATA;
 input  CatRecOut;
 
-wire [Amba_Addr_Depth - 1:0] PADDR;
+reg [Amba_Addr_Depth - 1:0] PADDR;
 reg                         PENABLE;
 reg                         PSEL;
-wire [Amba_Word - 1:0]       PWDATA;
-wire                         PWRITE;
+reg [Amba_Word - 1:0]       PWDATA;
+reg                         PWRITE;
 reg                         clk;
 reg                         rst;
 wire [Amba_Word - 1:0]       PRDATA;
@@ -50,46 +51,70 @@ wire                         CatRecOut;
 initial begin
     clk <= 1'b0;
     rst <= 1'b1;
+
     #10 rst <= 0'b0;
+		PSEL <= 1'b0;
+	PWRITE <= 1'b0;
+	PENABLE <= 1'b0;
 end
 
 initial begin forever
     #5 clk = ~clk;
 end
 
+////////////////////////////////////main test////////////////////////////////////
+integer index,fd, r;
+reg[15:0] pixel1,pixel2,pixel3;
+reg[Amba_Addr_Depth-1:0] inc_addr,write_address;
+
 initial begin
-   PENABLE <= 1'b0;
-   PSEL    <= 1'b0;
-   #5;
-   PENABLE <= 1'b0;
-   PSEL    <= 1'b0;
-   #10;
-   PENABLE <= 1'b0;
-   PSEL    <= 1'b1;
-   #10;
-   PENABLE <= 1'b1;
-   PSEL    <= 1'b1;
-   #10;
-   PENABLE <= 1'b0;
-   PSEL    <= 1'b1;
-   #10;
-   PENABLE <= 1'b1;
-   PSEL    <= 1'b1;
-   #10;
-   PENABLE <= 1'b0;
-   PSEL    <= 1'b1;
-   #10;
-   PENABLE <= 1'b1;
-   PSEL    <= 1'b1;
-   #10;
-   PENABLE <= 1'b0;
-   PSEL    <= 1'b1;
-   #10;
-   PENABLE <= 1'b1;
-   PSEL    <= 1'b1;
-   #10;
-   
+#10
+write_address[Amba_Addr_Depth-1:1] = {Amba_Addr_Depth{1'b0}}; //reset read address
+write_address[0] = 1'b1;
+fd = $fopen("../TestBenchInputFiles/Image0.txt" , "r");
+write({Amba_Addr_Depth{1'b0}},24'h000000);
+for(index = 1; index<=file_length;index = index + 1)
+	begin
+		    r = $fscanf(fd, "%d\n", pixel1); 
+		    r = $fscanf(fd, "%d\n", pixel2); 
+		    r = $fscanf(fd, "%d\n", pixel3); 
+			write(write_address, {pixel1[7:0], pixel2[7:0], pixel3[7:0]});
+			write_address = write_address + 1;
+	end
+write_address[Amba_Addr_Depth-1:1] = {Amba_Addr_Depth{1'b0}}; //reset read address
+write_address[0] = 1'b1;
+write({Amba_Addr_Depth{1'b0}},{{(Amba_Word-1){1'b0}},1'b1});
+PSEL <= 1'b0;
+PWRITE <= 1'b0;
+PENABLE <= 1'b0;
 end
+
+////////////////////////////////////main test////////////////////////////////////
+
+
+
+
+task write;
+	input [Amba_Addr_Depth-1:0]	Adress;
+	input [3*Amba_Word-1:0]		data;
+	begin
+		@(posedge clk)
+		begin
+		#1;
+		PSEL = 1'b1;
+		PENABLE = 1'b0;
+		PWRITE = 1'b1;
+		PADDR = Adress;
+		PWDATA = data;
+		end
+		@(posedge clk)
+		begin
+		#1;
+		PENABLE = 1'b1;
+		end
+	end
+endtask
+
 
 
 endmodule // cat_recognizer_tester

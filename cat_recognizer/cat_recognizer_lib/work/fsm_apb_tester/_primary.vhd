@@ -10,7 +10,8 @@ entity fsm_apb_tester is
         enable          : in     vl_logic;
         pclock          : out    vl_logic;
         psel            : out    vl_logic;
-        penable         : out    vl_logic
+        penable         : out    vl_logic;
+        pwrite          : out    vl_logic
     );
     attribute mti_svvh_generic_type : integer;
     attribute mti_svvh_generic_type of IDLE : constant is 1;

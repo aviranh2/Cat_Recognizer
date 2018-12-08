@@ -190,7 +190,7 @@ value "struct"
 )
 (vvPair
 variable "time"
-value "13:12:50"
+value "13:56:13"
 )
 (vvPair
 variable "unit"

@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom Neuron_tester
+DEFAULT_FILE atom neuron_tester_rtl.v

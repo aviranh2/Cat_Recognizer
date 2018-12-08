@@ -13,7 +13,7 @@ entity NeuronCalculator is
         reset           : in     vl_logic;
         enable          : in     vl_logic;
         get_result      : in     vl_logic;
-        \out\           : out    vl_logic
+        neuron_calculator_out: out    vl_logic
     );
     attribute mti_svvh_generic_type : integer;
     attribute mti_svvh_generic_type of DATA_WIDTH : constant is 1;

@@ -1,0 +1,1667 @@
+DocumentHdrVersion "1.1"
+Header (DocumentHdr
+version 2
+language 1
+dialect 5
+dmPackageRefs [
+]
+instances [
+(Instance
+name "calculator"
+duLibraryName "cat_recognizer_lib"
+duName "NeuronCalculator"
+elements [
+(GiElement
+name "DATA_WIDTH"
+value "Amba_Word"
+)
+(GiElement
+name "Addr_Depth"
+value "Amba_Addr_Depth"
+)
+(GiElement
+name "Weight_Percision"
+value "Weightrecision"
+)
+]
+mwi 0
+uid 81,0
+)
+(Instance
+name "pixel_mem"
+duLibraryName "cat_recognizer_lib"
+duName "RegisterFile"
+elements [
+(GiElement
+name "DATA_WIDTH"
+value "Amba_Word"
+)
+(GiElement
+name "Addr_Depth"
+value "Amba_Addr_Depth"
+)
+]
+mwi 0
+uid 87,0
+)
+(Instance
+name "apb_interface"
+duLibraryName "cat_recognizer_lib"
+duName "fsm_apb"
+elements [
+(GiElement
+name "IDLE"
+type "[1:0]"
+value "2'b00"
+)
+(GiElement
+name "SETUP"
+type "[1:0]"
+value "2'b01"
+)
+(GiElement
+name "ENABLE"
+type "[1:0]"
+value "2'b10"
+)
+]
+mwi 0
+uid 91,0
+)
+(Instance
+name "weight_mem"
+duLibraryName "cat_recognizer_lib"
+duName "weights_memory"
+elements [
+(GiElement
+name "DATA_WIDTH"
+value "Weightrecision"
+)
+(GiElement
+name "Addr_Depth"
+value "Amba_Addr_Depth"
+)
+]
+mwi 0
+uid 95,0
+)
+]
+embeddedInstances [
+(EmbeddedInstance
+name "eb1"
+number "21"
+)
+(EmbeddedInstance
+name "MAIN_BLOCK"
+number "22"
+)
+]
+properties [
+(HdrProperty
+class "HDS"
+name "DocView"
+value "cat_recognizer.v"
+)
+(HdrProperty
+class "HDS"
+name "DocViewState"
+value "1543489777"
+)
+(HdrProperty
+class "HDS"
+name "DocView"
+value "Temp Path"
+)
+(HdrProperty
+class "HDS"
+name "DocViewState"
+value ""
+)
+]
+)
+version "30.1"
+newIbd 1
+appVersion "2012.1 (Build 6)"
+noEmbeddedEditors 1
+model (IbdDiag
+LanguageMgr "Verilog2001LangMgr"
+uid 1,0
+optionalChildren [
+*1 (Property
+uid 42,0
+pclass "HDS"
+pname "DocView"
+pvalue "cat_recognizer.v"
+ptn "String"
+)
+*2 (Property
+uid 43,0
+pclass "HDS"
+pname "DocViewState"
+pvalue "1543489777"
+ptn "String"
+)
+*3 (Property
+uid 106,0
+pclass "HDS"
+pname "DocView"
+pvalue "Temp Path"
+ptn "String"
+)
+*4 (Property
+uid 107,0
+pclass "HDS"
+pname "DocViewState"
+ptn "String"
+)
+]
+bg "65535,65535,65535"
+grid (Grid
+origin "0,0"
+isVisible 1
+isActive 1
+xSpacing 1000
+xySpacing 1000
+xShown 1
+yShown 1
+color "65535,0,0"
+)
+packageList *5 (PackageList
+uid 2,0
+stg "VerticalLayoutStrategy"
+textVec [
+*6 (Text
+uid 3,0
+va (VaSet
+font "arial,8,1"
+)
+xt "0,0,5400,1000"
+st "Package List"
+blo "0,800"
+)
+*7 (MLText
+uid 4,0
+va (VaSet
+)
+xt "0,1000,10800,4000"
+st "LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_arith.all;
+"
+tm "PackageList"
+)
+]
+)
+compDirBlock (MlTextGroup
+uid 5,0
+stg "VerticalLayoutStrategy"
+textVec [
+*8 (Text
+uid 6,0
+va (VaSet
+font "Arial,8,1"
+)
+xt "20000,0,28100,1000"
+st "Compiler Directives"
+blo "20000,800"
+)
+*9 (Text
+uid 7,0
+va (VaSet
+font "Arial,8,1"
+)
+xt "20000,1000,29600,2000"
+st "Pre-module directives:"
+blo "20000,1800"
+)
+*10 (MLText
+uid 8,0
+va (VaSet
+)
+xt "20000,2000,27600,4000"
+st "`resetall
+`timescale 1ns/10ps
+"
+tm "BdCompilerDirectivesTextMgr"
+)
+*11 (Text
+uid 9,0
+va (VaSet
+font "Arial,8,1"
+)
+xt "20000,4000,30100,5000"
+st "Post-module directives:"
+blo "20000,4800"
+)
+*12 (MLText
+uid 10,0
+va (VaSet
+)
+xt "20000,0,20000,0"
+tm "BdCompilerDirectivesTextMgr"
+)
+*13 (Text
+uid 11,0
+va (VaSet
+font "Arial,8,1"
+)
+xt "20000,5000,29900,6000"
+st "End-module directives:"
+blo "20000,5800"
+)
+*14 (MLText
+uid 12,0
+va (VaSet
+)
+xt "20000,6000,20000,6000"
+tm "BdCompilerDirectivesTextMgr"
+)
+]
+associable 1
+)
+windowSize "0,0,1015,690"
+viewArea "0,0,0,0"
+cachedDiagramExtent "0,0,0,0"
+pageBreakOrigin "0,0"
+logical (IbdLogical
+uid 13,0
+colContainer (IbdColContainer
+uid 14,0
+optionalChildren [
+*15 (IbdInterface
+ordering 1
+uid 15,0
+name "cat_recognizer"
+on 9
+fa [
+(IbdNFA
+io "O"
+c *16 (IbdNet
+d (Decl
+n "CatRecOut"
+t "wire"
+o 15
+)
+uid 79,0
+on 24
+nodes [
+&15
+*17 (IbdHdsComponent
+archFileType "UNKNOWN"
+p [
+*18 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "x"
+t "wire"
+b "[DATA_WIDTH-1:0]"
+preAdd 0
+posAdd 0
+o 1
+)
+)
+)
+*19 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "w"
+t "wire"
+b "[3*Weight_Percision-1:0]"
+preAdd 0
+posAdd 0
+o 2
+)
+)
+)
+*20 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "clock"
+t "wire"
+preAdd 0
+posAdd 0
+o 3
+)
+)
+)
+*21 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "reset"
+t "wire"
+preAdd 0
+posAdd 0
+o 4
+)
+)
+)
+*22 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "enable"
+t "wire"
+preAdd 0
+posAdd 0
+o 5
+)
+)
+)
+*23 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "get_result"
+t "wire"
+preAdd 0
+posAdd 0
+o 6
+)
+)
+)
+*24 (IbdCptPort
+p (LogicalPort
+lang 3
+m 1
+decl (Decl
+n "out1"
+t "wire"
+preAdd 0
+posAdd 0
+o 7
+)
+)
+)
+]
+inst "calculator"
+lib "cat_recognizer_lib"
+ele [
+(GiElement
+name "DATA_WIDTH"
+value "Amba_Word"
+)
+(GiElement
+name "Addr_Depth"
+value "Amba_Addr_Depth"
+)
+(GiElement
+name "Weight_Percision"
+value "Weightrecision"
+)
+]
+uid 81,0
+name "NeuronCalculator"
+on 12
+fa [
+(IbdCFA
+l "out1"
+p &24
+c &16
+)
+(IbdCFA
+l "x"
+p &18
+c *25 (IbdNet
+d (Decl
+n "pixels_bus"
+t "wire"
+b "[Amba_Word-1:0]"
+o 2
+)
+uid 53,0
+on 10
+nodes [
+&17
+*26 (IbdHdsComponent
+archFileType "UNKNOWN"
+p [
+*27 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "clock"
+t "wire"
+preAdd 0
+posAdd 0
+o 1
+)
+)
+)
+*28 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "address"
+t "wire"
+b "[Addr_Depth-1:0]"
+preAdd 0
+posAdd 0
+o 2
+)
+)
+)
+*29 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "en_write"
+t "wire"
+preAdd 0
+posAdd 0
+o 3
+)
+)
+)
+*30 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "en_read"
+t "wire"
+preAdd 0
+posAdd 0
+o 4
+)
+)
+)
+*31 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "data_in"
+t "wire"
+b "[DATA_WIDTH-1:0]"
+preAdd 0
+posAdd 0
+o 5
+)
+)
+)
+*32 (IbdCptPort
+p (LogicalPort
+lang 3
+m 1
+decl (Decl
+n "data_out"
+t "wire"
+b "[DATA_WIDTH-1:0]"
+preAdd 0
+posAdd 0
+o 6
+)
+)
+)
+*33 (IbdCptPort
+p (LogicalPort
+lang 3
+m 1
+decl (Decl
+n "control_reg"
+t "wire"
+preAdd 0
+posAdd 0
+o 7
+)
+)
+)
+]
+inst "pixel_mem"
+lib "cat_recognizer_lib"
+ele [
+(GiElement
+name "DATA_WIDTH"
+value "Amba_Word"
+)
+(GiElement
+name "Addr_Depth"
+value "Amba_Addr_Depth"
+)
+]
+bc "   assign PWRITE = PSEL | PENABLE;
+"
+uid 87,0
+name "RegisterFile"
+on 15
+fa [
+(IbdCFA
+l "data_out"
+p &32
+c &25
+)
+(IbdCFA
+l "data_in"
+p &31
+c *34 (IbdNet
+d (Decl
+n "PWDATA"
+t "wire"
+b "[Amba_Word-1:0]"
+o 10
+)
+uid 69,0
+on 19
+nodes [
+&15
+&26
+]
+)
+)
+(IbdCFA
+l "en_read"
+p &30
+c *35 (IbdNet
+d (Decl
+n "en_read"
+t "reg"
+b "[0:0]"
+o 1
+)
+uid 51,0
+on 9
+nodes [
+&17
+&26
+*36 (IbdHdsComponent
+archFileType "UNKNOWN"
+p [
+*37 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "clock"
+t "wire"
+preAdd 0
+posAdd 0
+o 1
+)
+)
+)
+*38 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "reset"
+t "wire"
+preAdd 0
+posAdd 0
+o 2
+)
+)
+)
+*39 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "address"
+t "wire"
+b "[Addr_Depth-1:0]"
+preAdd 0
+posAdd 0
+o 3
+)
+)
+)
+*40 (IbdCptPort
+p (LogicalPort
+lang 3
+decl (Decl
+n "en_read"
+t "wire"
+preAdd 0
+posAdd 0
+o 4
+)
+)
+)
+*41 (IbdCptPort
+p (LogicalPort
+lang 3
+m 1
+decl (Decl
+n "data_out"
+t "wire"
+b "[3*DATA_WIDTH-1:0]"
+preAdd 0
+posAdd 0
+o 5
+)
+)
+)
+]
+inst "weight_mem"
+lib "cat_recognizer_lib"
+ele [
+(GiElement
+name "DATA_WIDTH"
+value "Weightrecision"
+)
+(GiElement
+name "Addr_Depth"
+value "Amba_Addr_Depth"
+)
+]
+uid 95,0
+name "weights_memory"
+on 21
+fa [
+(IbdCFA
+l "data_out"
+p &41
+c *42 (IbdNet
+d (Decl
+n "weights_bus"
+t "wire"
+b "[3*Weightrecision-1:0]"
+o 4
+)
+uid 57,0
+on 12
+nodes [
+&17
+&36
+]
+)
+)
+(IbdCFA
+l "en_read"
+p &40
+c &35
+)
+(IbdCFA
+l "address"
+p &39
+c *43 (IbdNet
+d (Decl
+n "mem_address"
+t "reg"
+b "[Amba_Addr_Depth-1:0]"
+o 6
+)
+uid 61,0
+on 15
+nodes [
+&26
+&36
+]
+)
+)
+(IbdCFA
+l "clock"
+p &37
+c *44 (IbdNet
+d (Decl
+n "clk"
+t "wire"
+o 12
+)
+uid 73,0
+on 21
+nodes [
+&15
+&17
+&26
+*45 (IbdHdsComponent
+archFileType "UNKNOWN"
+p [
+*46 (IbdCptPort
+p (LogicalPort
+lang 5
+m 1
+decl (Decl
+n "enable"
+t "reg"
+o 1
+)
+)
+)
+*47 (IbdCptPort
+p (LogicalPort
+lang 5
+decl (Decl
+n "pclock"
+t "wire"
+o 2
+)
+)
+)
+*48 (IbdCptPort
+p (LogicalPort
+lang 5
+decl (Decl
+n "penable"
+t "wire"
+o 4
+)
+)
+)
+*49 (IbdCptPort
+p (LogicalPort
+lang 5
+decl (Decl
+n "psel"
+t "wire"
+o 3
+)
+)
+)
+]
+inst "apb_interface"
+lib "cat_recognizer_lib"
+ele [
+(GiElement
+name "IDLE"
+type "[1:0]"
+value "2'b00"
+)
+(GiElement
+name "SETUP"
+type "[1:0]"
+value "2'b01"
+)
+(GiElement
+name "ENABLE"
+type "[1:0]"
+value "2'b10"
+)
+]
+includeGenericsInHDL 0
+ordering 1
+bc "wire enable_write;
+ assign enable_write = en_write;
+`include \"../bias5.v\"
+"
+uid 91,0
+name "fsm_apb"
+on 18
+fa [
+(IbdCFA
+l "penable"
+p &48
+c *50 (IbdNet
+d (Decl
+n "PENABLE"
+t "wire"
+o 8
+)
+uid 65,0
+on 17
+nodes [
+&15
+&45
+]
+)
+)
+(IbdCFA
+l "psel"
+p &49
+c *51 (IbdNet
+d (Decl
+n "PSEL"
+t "wire"
+o 9
+)
+uid 67,0
+on 18
+nodes [
+&15
+&45
+]
+)
+)
+(IbdCFA
+l "pclock"
+p &47
+c &44
+)
+(IbdCFA
+l "enable"
+p &46
+c *52 (IbdNet
+d (Decl
+n "PWRITE"
+t "wire"
+o 11
+)
+uid 71,0
+on 20
+nodes [
+&15
+&26
+&45
+]
+)
+)
+]
+dec [
+]
+ucp [
+]
+)
+&36
+]
+)
+)
+(IbdCFA
+l "reset"
+p &38
+c *53 (IbdNet
+d (Decl
+n "rst"
+t "wire"
+o 13
+)
+uid 75,0
+on 22
+nodes [
+&15
+&17
+&36
+]
+)
+)
+]
+dec [
+]
+ucp [
+]
+)
+]
+)
+)
+(IbdCFA
+l "control_reg"
+p &33
+c *54 (IbdNet
+d (Decl
+n "control_reg"
+t "wire"
+o 3
+)
+uid 55,0
+on 11
+nodes [
+&26
+]
+)
+)
+(IbdCFA
+l "address"
+p &28
+c &43
+)
+(IbdCFA
+l "clock"
+p &27
+c &44
+)
+(IbdCFA
+l "en_write"
+p &29
+c &52
+)
+]
+dec [
+]
+ucp [
+]
+)
+]
+)
+)
+(IbdCFA
+l "w"
+p &19
+c &42
+)
+(IbdCFA
+l "enable"
+p &22
+c &35
+)
+(IbdCFA
+l "clock"
+p &20
+c &44
+)
+(IbdCFA
+l "reset"
+p &21
+c &53
+)
+(IbdCFA
+l "get_result"
+p &23
+c *55 (IbdWire
+slice "[Amba_Addr_Depth]"
+uid 85,0
+on 14
+nodes [
+&17
+]
+net *56 (IbdNet
+d (Decl
+n "read_address"
+t "reg"
+b "[Amba_Addr_Depth:0]"
+o 5
+)
+uid 59,0
+optionalChildren [
+&55
+]
+on 13
+nodes [
+&17
+]
+)
+)
+)
+]
+dec [
+(IbdCFA
+f "*"
+p &0
+io "I"
+dt 1
+c &56
+)
+]
+ucp [
+]
+)
+]
+)
+)
+(IbdNFA
+io "O"
+c *57 (IbdNet
+d (Decl
+n "PRDATA"
+t "wire"
+b "[Amba_Word-1:0]"
+o 14
+)
+uid 77,0
+on 23
+nodes [
+&15
+]
+)
+)
+(IbdNFA
+io "I"
+c *58 (IbdNet
+d (Decl
+n "PADDR"
+t "wire"
+b "[Amba_Addr_Depth-1:0]"
+o 7
+)
+uid 63,0
+on 16
+nodes [
+&15
+]
+)
+)
+(IbdNFA
+io "I"
+c &50
+)
+(IbdNFA
+io "I"
+c &51
+)
+(IbdNFA
+io "I"
+c &34
+)
+(IbdNFA
+io "I"
+c &44
+)
+(IbdNFA
+io "I"
+c &52
+)
+(IbdNFA
+io "I"
+c &53
+)
+]
+dec [
+]
+)
+&17
+&26
+&45
+&36
+*59 (IbdEB
+uid 99,0
+optionalChildren [
+*60 (IbdEmbeddedText
+theText "assign PRDATA = 1'h000000;
+"
+uid 100,0
+)
+]
+name "eb1"
+on 22
+fa [
+]
+dec [
+]
+)
+*61 (IbdEB
+uid 102,0
+optionalChildren [
+*62 (IbdEmbeddedText
+theText "always @(posedge clk)
+   begin: MAIN_BLOCK
+   if(control_reg) // start calc is on
+   begin
+   //  en_write     <= 1'b0;//am i right?(amit)
+      if(read_address[Amba_Addr_Depth])//finish calc
+      begin
+         en_read                       <= 1'b0;
+         read_address[Amba_Addr_Depth:1]        <= {Amba_Addr_Depth{1'b0}}; //reset read address
+         read_address[0]                   <= 1'b1;
+         end
+      else // didnt finish calc yet
+      begin
+         en_read       <= 1'b1;
+         read_address    <= read_address + 1;
+      mem_address       <= read_address[Amba_Addr_Depth-1:0]; // read mode
+      end
+      end
+   else // in write mode
+   begin
+      read_address[Amba_Addr_Depth:1]        <= {Amba_Addr_Depth{1'b0}}; //reset read address
+      read_address[0]                   <= 1'b1;
+   //   en_write     <= 1'b0;  //***am i right?(amit)
+      mem_address  <= PADDR; //write mode
+      end
+   end
+"
+uid 103,0
+)
+]
+name "MAIN_BLOCK"
+on 23
+fa [
+]
+dec [
+]
+)
+]
+)
+rowContainer (IbdRowContainer
+uid 16,0
+optionalChildren [
+&35
+&25
+&54
+&42
+&56
+&43
+&58
+&50
+&51
+&34
+&52
+&44
+&53
+&57
+&16
+]
+)
+)
+physical (MPhysicalIbd
+activeIct &0
+mainIct (MIct
+name "All"
+mcolContainer (MIctColContainer
+optionalChildren [
+*63 (MRefCol
+p 0
+uid 20,0
+d 20
+)
+*64 (MNameCol
+p 2
+uid 21,0
+d 114
+)
+*65 (MTypeCol
+p 4
+uid 22,0
+)
+*66 (MSignedCol
+p 5
+uid 23,0
+)
+*67 (MBoundsCol
+p 6
+uid 24,0
+d 118
+)
+*68 (MFilterCol
+p 7
+hidden 1
+uid 25,0
+d 120
+)
+*69 (MFixedCol
+p 8
+hidden 1
+uid 26,0
+d 20
+)
+*70 (MInterfaceCol
+p 9
+uid 27,0
+d 35
+ibdInterface &15
+)
+*71 (MDelayCol
+p 24
+uid 28,0
+)
+*72 (MValueCol
+p 25
+uid 29,0
+)
+*73 (MEolCol
+p 26
+uid 30,0
+)
+*74 (MSliceCol
+p 3
+uid 50,0
+)
+*75 (MHdsCompInstCol
+p 10
+uid 82,0
+optionalChildren [
+*76 (MCompPortCol
+p 11
+hidden 1
+uid 83,0
+d 49
+)
+*77 (MCompActualCol
+p 12
+hidden 1
+uid 84,0
+d 35
+)
+]
+d 35
+comp &17
+)
+*78 (MHdsCompInstCol
+p 13
+uid 88,0
+optionalChildren [
+*79 (MCompPortCol
+p 14
+hidden 1
+uid 89,0
+d 58
+)
+*80 (MCompActualCol
+p 15
+hidden 1
+uid 90,0
+d 35
+)
+]
+d 35
+comp &26
+)
+*81 (MHdsCompInstCol
+p 16
+uid 92,0
+optionalChildren [
+*82 (MCompPortCol
+p 17
+hidden 1
+uid 93,0
+d 45
+)
+*83 (MCompActualCol
+p 18
+hidden 1
+uid 94,0
+d 35
+)
+]
+d 35
+comp &45
+)
+*84 (MHdsCompInstCol
+p 19
+uid 96,0
+optionalChildren [
+*85 (MCompPortCol
+p 20
+hidden 1
+uid 97,0
+d 45
+)
+*86 (MCompActualCol
+p 21
+hidden 1
+uid 98,0
+d 35
+)
+]
+d 35
+comp &36
+)
+*87 (MEBCol
+p 22
+uid 101,0
+d 35
+eb &59
+)
+*88 (MEBCol
+p 23
+uid 104,0
+d 35
+eb &61
+)
+*89 (MExpandCol
+p 1
+uid 105,0
+d 15
+depth 1
+)
+]
+)
+mrowContainer (MIctRowContainer
+optionalChildren [
+*90 (MRefRow
+p 0
+uid 32,0
+)
+*91 (MNameRow
+p 1
+uid 33,0
+d 85
+)
+*92 (MLibRow
+p 2
+uid 34,0
+)
+*93 (MInstanceRefRow
+p 3
+uid 35,0
+)
+*94 (MPortMapLabelRow
+p 4
+uid 36,0
+)
+*95 (MFilterRow
+p 5
+hidden 1
+uid 37,0
+d 20
+)
+*96 (MFixedRow
+p 6
+hidden 1
+uid 38,0
+)
+*97 (MReqRow
+p 7
+hidden 1
+uid 39,0
+)
+*98 (MUcPortGroupRow
+p 8
+hidden 1
+uid 40,0
+)
+*99 (MEmptyRow
+p 25
+uid 41,0
+)
+*100 (MNetRow
+p 9
+uid 52,0
+net &35
+)
+*101 (MNetRow
+p 10
+uid 54,0
+net &25
+)
+*102 (MNetRow
+p 11
+uid 56,0
+net &54
+)
+*103 (MNetRow
+p 12
+uid 58,0
+net &42
+)
+*104 (MNetRow
+p 13
+uid 60,0
+optionalChildren [
+*105 (MWireRow
+p 14
+uid 86,0
+wire &55
+)
+]
+expandCol &89
+net &56
+)
+*106 (MNetRow
+p 15
+uid 62,0
+net &43
+)
+*107 (MNetRow
+p 16
+uid 64,0
+net &58
+)
+*108 (MNetRow
+p 17
+uid 66,0
+net &50
+)
+*109 (MNetRow
+p 18
+uid 68,0
+net &51
+)
+*110 (MNetRow
+p 19
+uid 70,0
+net &34
+)
+*111 (MNetRow
+p 20
+uid 72,0
+net &52
+)
+*112 (MNetRow
+p 21
+uid 74,0
+net &44
+)
+*113 (MNetRow
+p 22
+uid 76,0
+net &53
+)
+*114 (MNetRow
+p 23
+uid 78,0
+net &57
+)
+*115 (MNetRow
+p 24
+uid 80,0
+net &16
+)
+]
+)
+vaOverrides [
+]
+)
+blkMVa (MVa
+cellColor "39936,56832,65280"
+fontColor "0,0,0"
+font "Tahoma,10,1"
+)
+hdsCompMva (MVa
+cellColor "45055,65535,30000"
+fontColor "0,0,0"
+font "Tahoma,10,1"
+)
+mwCompMva (MVa
+cellColor "0,65535,65535"
+fontColor "0,0,0"
+font "Tahoma,10,1"
+)
+ipCompMva (MVa
+cellColor "45055,65535,30000"
+fontColor "0,0,0"
+font "Tahoma,10,1"
+)
+embeddedBlkMva (MVa
+cellColor "65535,65535,37120"
+fontColor "0,0,0"
+font "Tahoma,10,1"
+)
+expressionRowMva (MVa
+alignment 0
+cellColor "65280,65280,46080"
+fontColor "0,0,0"
+font "Tahoma,10,1"
+)
+netSliceMva (MVa
+alignment 0
+cellColor "39936,56832,65280"
+fontColor "0,0,0"
+font "Tahoma,10,1"
+)
+bundleMva (MVa
+alignment 0
+cellColor "65280,65280,46080"
+fontColor "0,0,0"
+font "Tahoma,10,1"
+)
+propColMva (MVa
+cellColor "0,49152,49152"
+fontColor "0,0,0"
+font "Tahoma,10,1"
+)
+groupColMva (MVa
+alignment 0
+cellColor "62965,57054,46003"
+fontColor "0,0,0"
+font "Tahoma,10,1"
+)
+interfaceColMva (MVa
+cellColor "59904,39936,65280"
+fontColor "0,0,0"
+font "Tahoma,10,1"
+)
+frameColMva (MVa
+alignment 0
+cellColor "0,0,65535"
+fontColor "65535,65535,65535"
+font "Tahoma,10,1"
+)
+propRowMva (MVa
+alignment 0
+cellColor "0,49152,49152"
+fontColor "0,0,0"
+font "Tahoma,10,1"
+)
+groupRowMva (MVa
+alignment 0
+cellColor "62965,57054,46003"
+fontColor "0,0,0"
+font "Tahoma,10,1"
+)
+netRowMva (MVa
+cellColor "65535,65535,65535"
+fontColor "0,0,0"
+font "Tahoma,10,0"
+)
+uid 17,0
+)
+lastUid 107,0
+genericsCommonDM (CommonDM
+ldm (LogicalDM
+emptyRow *116 (LEmptyRow
+)
+optionalChildren [
+*117 (RefLabelRowHdr
+)
+*118 (TitleRowHdr
+)
+*119 (FilterRowHdr
+)
+*120 (RefLabelColHdr
+tm "RefLabelColHdrMgr"
+)
+*121 (RowExpandColHdr
+tm "RowExpandColHdrMgr"
+)
+*122 (GroupColHdr
+tm "GroupColHdrMgr"
+)
+*123 (NameColHdr
+tm "GenericNameColHdrMgr"
+)
+*124 (InitColHdr
+tm "GenericValueColHdrMgr"
+)
+*125 (EolColHdr
+tm "GenericEolColHdrMgr"
+)
+*126 (LogGeneric
+generic (GiElement
+name "Amba_Word"
+value "24"
+)
+uid 45,0
+)
+*127 (LogGeneric
+generic (GiElement
+name "Amba_Addr_Depth"
+value "12"
+)
+uid 47,0
+)
+*128 (LogGeneric
+generic (GiElement
+name "Weightrecision"
+value "5"
+)
+uid 49,0
+)
+]
+)
+pdm (PhysicalDM
+displayShortBounds 1
+editShortBounds 1
+optionalChildren [
+*129 (Sheet
+sheetRow (SheetRow
+headerVa (MVa
+cellColor "49152,49152,49152"
+fontColor "0,0,0"
+font "Tahoma,10,0"
+)
+cellVa (MVa
+cellColor "65535,65535,65535"
+fontColor "0,0,0"
+font "Tahoma,10,0"
+)
+groupVa (MVa
+cellColor "39936,56832,65280"
+fontColor "0,0,0"
+font "Tahoma,10,0"
+)
+emptyMRCItem *130 (MRCItem
+litem &116
+pos 3
+dimension 20
+)
+optionalChildren [
+*131 (MRCItem
+litem &117
+pos 0
+dimension 20
+)
+*132 (MRCItem
+litem &118
+pos 1
+dimension 23
+)
+*133 (MRCItem
+litem &119
+pos 2
+hidden 1
+dimension 20
+)
+*134 (MRCItem
+litem &126
+pos 0
+dimension 20
+uid 44,0
+)
+*135 (MRCItem
+litem &127
+pos 1
+dimension 20
+uid 46,0
+)
+*136 (MRCItem
+litem &128
+pos 2
+dimension 20
+uid 48,0
+)
+]
+)
+sheetCol (SheetCol
+propVa (MVa
+cellColor "0,49152,49152"
+fontColor "0,0,0"
+font "Tahoma,10,0"
+textAngle 90
+)
+optionalChildren [
+*137 (MRCItem
+litem &120
+pos 0
+dimension 20
+)
+*138 (MRCItem
+litem &122
+pos 1
+dimension 50
+)
+*139 (MRCItem
+litem &123
+pos 2
+dimension 100
+)
+*140 (MRCItem
+litem &124
+pos 3
+dimension 50
+)
+*141 (MRCItem
+litem &125
+pos 4
+dimension 80
+)
+]
+)
+fixedCol 3
+fixedRow 2
+name "Ports"
+vaOverrides [
+]
+)
+]
+)
+type 1
+)
+)

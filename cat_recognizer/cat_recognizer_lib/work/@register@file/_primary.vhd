@@ -12,7 +12,7 @@ entity RegisterFile is
         en_read         : in     vl_logic;
         data_in         : in     vl_logic_vector;
         data_out        : out    vl_logic_vector;
-        control_reg     : out    vl_logic_vector
+        control_reg     : out    vl_logic
     );
     attribute mti_svvh_generic_type : integer;
     attribute mti_svvh_generic_type of DATA_WIDTH : constant is 1;

@@ -28,7 +28,7 @@ begin : MAIN_BLOCK
 	if(reset)
 	begin
 	//`include "C:/Users/amitb/Desktop/UNIV/year4/logi/ass/ass1/cat_recognizer/CatRecognizer/CatRecognizer_lib/hdl/weights5.v"
-	//  `include "../hdl/weights5.v"
+	  `include "../hdl/weights5.v"
 	end
 	else if(en_read)
 	  begin

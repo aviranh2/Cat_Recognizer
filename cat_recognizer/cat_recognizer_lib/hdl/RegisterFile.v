@@ -28,13 +28,15 @@ always @(posedge clock)
 begin: MAIN_BLOCK
 
 	if(en_read)
+		begin
 		out_val <= registers[address];//read from register
-	
+		end
 	else if(en_write)
+		begin
 		registers[address] <= data_in;//write to register
-		
+		end
 	else 
-         out_val <= {DATA_WIDTH{1'bz}};//give nothing in output if not requested
+        out_val <= {DATA_WIDTH{1'bz}};//give nothing in output if not requested
 		
 
 end

@@ -11,61 +11,57 @@
 `resetall
 `timescale 1ns/10ps
 module fsm_apb (
-output reg enable, 
+output enable, 
 input pclock, 
 psel, 
-penable);
+penable,
+pwrite,
+rst
+);
 parameter[1:0]  IDLE = 2'b00,
                 SETUP = 2'b01,
                 ENABLE = 2'b10;
 reg[1:0] current_state, next_state;
 reg next_enable;
 
-always @(posedge pclock) begin : FIRST_BLOCK
-if(!psel)
- begin
-    current_state <= IDLE;
-    enable <= 1'b0;
-    end
-else 
-begin
-    current_state <= next_state;
-    enable <= next_enable;
-    end
+always @(posedge pclock or negedge rst) begin : SYNCHRONOUS_BLOCK
+	if(!psel | rst)
+		begin
+		current_state <= IDLE;
+		end
+	else 
+		begin
+		current_state <= next_state;
+		end
 end
 
-always @(penable or psel or current_state) begin : SECOND_BLOCK
+always @(penable or psel or pwrite) begin : COMBINATORIAL_BLOCK
 case (current_state)
   IDLE: begin 
-        if(psel)
-          next_state = SETUP;
+        if(psel & pwrite)
+			begin 
+				next_state = SETUP;
+			end
         else
-          next_state = IDLE;
-        next_enable = 1'b0;
-      end
+			begin
+				next_state = IDLE;
+			end
+		next_enable = 1'b0;
+		end
   SETUP: begin
-        if(penable)
-          next_state = ENABLE;
-        else
-          next_state = SETUP;
-        next_enable = 1'b0;
-        end
-  ENABLE: begin
-        if(psel)
-          begin
-          next_state = SETUP;
-        end
-        else
-          begin
-          next_state = IDLE;
-        next_enable = 1'b1;
-      end
-        end
-  default: begin
-      //next_state = IDLE;
-       next_enable = 1'b0;
- end 
-
+			next_state = ENABLE;
+			next_enable = 1'b1;
+         end
+  ENABLE: 	begin
+				next_state = psel ? SETUP : IDLE;
+				next_enable = 1'b0;
+			end
+  default: 	begin
+				next_state = IDLE;
+				next_enable = 1'b0;
+			end
 endcase
 end
+
+assign enable = next_enable;
 endmodule

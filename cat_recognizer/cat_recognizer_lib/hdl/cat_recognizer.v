@@ -21,7 +21,7 @@ PRDATA,
 CatRecOut,);
   parameter Amba_Word = 24;
   parameter Amba_Addr_Depth = 12;
-  parameter Weightrecision = 5;
+  parameter Weight_precision = 5;
   
   input wire PENABLE,PSEL,PWRITE,clk,rst;
   input [Amba_Addr_Depth-1:0] PADDR;
@@ -30,16 +30,19 @@ CatRecOut,);
   output[Amba_Word-1:0] PRDATA;
   output CatRecOut;
   
-  reg[0:0]  en_read;
+  reg  en_read,en_write;
   wire [Amba_Word-1:0]		 		pixels_bus;
   wire control_reg;
-  wire [3*Weightrecision-1:0] 		weights_bus;
+  wire [3*Weight_precision-1:0] 		weights_bus;
   
   reg [Amba_Addr_Depth:0] read_address;
   reg [Amba_Addr_Depth-1:0] mem_address;
   
-  assign PRDATA = 1'h000000;
-  //wire enable_write;
+  integer calculator_delay_counter;
+  reg finish_calc;
+  
+  assign PRDATA = 24'h000000;
+  wire apb_write_enable;
  // assign enable_write = en_write;
   //`include "../bias5.v"
   
@@ -47,7 +50,9 @@ CatRecOut,);
 	.pclock 	( clk ),
 	.psel		( PSEL ),
 	.penable	( PENABLE ),
-	.enable 	( PWRITE )
+	.pwrite 	( PWRITE ),
+	.rst		( rst ),
+	.enable		( apb_write_enable )
   );
  //   assign PWRITE = PSEL | PENABLE;
   RegisterFile #(
@@ -55,7 +60,7 @@ CatRecOut,);
 	.Addr_Depth(Amba_Addr_Depth))
   pixel_mem(
 	.clock		(clk),
-	.en_write	(PWRITE),
+	.en_write	(apb_write_enable),
 	.en_read	(en_read),
 	.address	(mem_address),
 	.data_in	(PWDATA),
@@ -64,12 +69,12 @@ CatRecOut,);
   );
   
   weights_memory #(
-    .DATA_WIDTH(Weightrecision),
+    .DATA_WIDTH(Weight_precision),
 	.Addr_Depth(Amba_Addr_Depth))
   weight_mem(
 	.clock		(clk),
 	.reset		(rst),
-	.address	(mem_address),
+	.address	(mem_address-1),
 	.en_read	(en_read),
 	.data_out	(weights_bus)
   );
@@ -77,44 +82,59 @@ CatRecOut,);
   NeuronCalculator #(
 	.DATA_WIDTH(Amba_Word),
 	.Addr_Depth(Amba_Addr_Depth),
-	.Weight_Percision(Weightrecision))
+	.Weight_Percision(Weight_precision))
   calculator(
 	.clock		(clk),
 	.reset		(rst),
 	.enable		(en_read),
-	.get_result	(read_address[Amba_Addr_Depth]),
+	.get_result	(finish_calc),
 	.x			(pixels_bus),
 	.w			(weights_bus),
-	.out1		(CatRecOut)
+	.neuron_calculator_out		(CatRecOut)
 	);
-	
-
-  
 
 	always @(posedge clk)
 	begin: MAIN_BLOCK
 	if(control_reg) // start calc is on
 	begin
-	//  en_write 	 <= 1'b0;//am i right?(amit)
 		if(read_address[Amba_Addr_Depth])//finish calc
 		begin
-			en_read 							 <= 1'b0;
-			read_address[Amba_Addr_Depth:1]	 	 <= {Amba_Addr_Depth{1'b0}}; //reset read address
-			read_address[0]						 <= 1'b1;
-			end
+			calculator_delay_counter =1;
+			if(calculator_delay_counter == 4)
+				begin
+				en_read 							 <= 1'b0;
+				en_write 						 <= 1'b0;
+				read_address[Amba_Addr_Depth:1]	 	 <= {Amba_Addr_Depth{1'b0}}; //reset read address
+				read_address[0]						 <= 1'b1;
+				finish_calc   <=1'b1;
+				end
+			else
+				begin
+				calculator_delay_counter = calculator_delay_counter + 1;
+				en_read 		<= 1'b1;
+				en_write    <= 1'b0;
+				read_address 	<= read_address + 1;
+				mem_address 	<= read_address[Amba_Addr_Depth-1:0]; // read mode
+				finish_calc   <=1'b0;
+				end
+		end
 		else // didnt finish calc yet
 		begin
 			en_read 		<= 1'b1;
+			en_write    <= 1'b0;
 			read_address 	<= read_address + 1;
-		mem_address 		<= read_address[Amba_Addr_Depth-1:0]; // read mode
+			mem_address 	<= read_address[Amba_Addr_Depth-1:0]; // read mode
+			finish_calc   <=1'b0;
 		end
 		end
 	else // in write mode
 	begin
 		read_address[Amba_Addr_Depth:1]	 	 <= {Amba_Addr_Depth{1'b0}}; //reset read address
 		read_address[0]						 <= 1'b1;
-	//	en_write 	 <= 1'b0;  //***am i right?(amit)
-		mem_address  <= PADDR; //write mode
+		mem_address 						 <= PADDR; //write mode
+		en_read 							 <= 1'b0;
+		en_write 							 <= apb_write_enable;
+		finish_calc   <=1'b0;
 		end
 	end
 	

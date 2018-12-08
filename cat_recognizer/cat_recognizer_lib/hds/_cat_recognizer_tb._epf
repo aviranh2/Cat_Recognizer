@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom cat_recognizer_tb
+DEFAULT_FILE atom cat_recognizer_tb_tb_rtl.v

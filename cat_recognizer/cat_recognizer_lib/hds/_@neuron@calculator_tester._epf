@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom NeuronCalculator_tester
+DEFAULT_FILE atom neuroncalculator_tester_rtl.v

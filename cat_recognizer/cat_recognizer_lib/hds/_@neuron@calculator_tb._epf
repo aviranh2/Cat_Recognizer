@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom NeuronCalculator_tb
+DEFAULT_FILE atom neuroncalculator_tb_tb_rtl.v

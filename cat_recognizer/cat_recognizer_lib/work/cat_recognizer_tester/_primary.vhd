@@ -4,7 +4,8 @@ entity cat_recognizer_tester is
     generic(
         Amba_Word       : integer := 24;
         Amba_Addr_Depth : integer := 12;
-        Weightrecision  : integer := 5
+        Weightrecision  : integer := 5;
+        file_length     : integer := 4095
     );
     port(
         PADDR           : out    vl_logic_vector;
@@ -21,4 +22,5 @@ entity cat_recognizer_tester is
     attribute mti_svvh_generic_type of Amba_Word : constant is 1;
     attribute mti_svvh_generic_type of Amba_Addr_Depth : constant is 1;
     attribute mti_svvh_generic_type of Weightrecision : constant is 1;
+    attribute mti_svvh_generic_type of file_length : constant is 1;
 end cat_recognizer_tester;

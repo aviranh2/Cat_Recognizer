@@ -10,7 +10,7 @@
 
 `resetall
 `timescale 1ns/10ps
-module NeuronCalculator(x,w,clock,reset,enable,get_result,neuron_calculator_out);
+module NeuronCalculator(x,w,clock,reset,enable,get_result,neuron_calculator_out,acc_val);
     parameter DATA_WIDTH = 24;
 	parameter Addr_Depth = 12;
 	parameter Weight_Percision = 5;
@@ -19,10 +19,11 @@ module NeuronCalculator(x,w,clock,reset,enable,get_result,neuron_calculator_out)
 	input [DATA_WIDTH-1:0] x;
 	input [3*Weight_Percision-1:0] w;
 	output neuron_calculator_out;
+	output signed [63:0] acc_val;
 	
 	reg output_result,start_to_work;
 	wire signed [31:0] pixelw1,pixelw2,pixelw3;
-	reg signed [63:0] acc;
+	reg signed [63:0] acc,last_acc;
 	reg [15:0] w_ext1,w_ext2,w_ext3;
 	reg [7:0]	x1,x2,x3;
 	
@@ -39,7 +40,7 @@ module NeuronCalculator(x,w,clock,reset,enable,get_result,neuron_calculator_out)
 	else if (get_result)
 		begin
 		start_to_work <= 1'b0;
-		output_result <= (acc + b > 0);
+		output_result <= (last_acc + b > 0);
 		end
 	else if(start_to_work)
 		begin
@@ -47,6 +48,14 @@ module NeuronCalculator(x,w,clock,reset,enable,get_result,neuron_calculator_out)
 		output_result <= 1'b0;
 		end
 	start_to_work <= enable;
+	end
+	
+	always @(negedge clock)
+	begin
+	if(!get_result)
+		begin
+		last_acc <= acc;
+		end
 	end
 	
 	always @(*)
@@ -79,5 +88,5 @@ module NeuronCalculator(x,w,clock,reset,enable,get_result,neuron_calculator_out)
 	);
 	
 	assign neuron_calculator_out = output_result;
-
+	assign acc_val = acc;
 endmodule

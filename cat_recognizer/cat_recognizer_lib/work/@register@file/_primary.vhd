@@ -7,6 +7,7 @@ entity RegisterFile is
     );
     port(
         clock           : in     vl_logic;
+        rst             : in     vl_logic;
         address         : in     vl_logic_vector;
         en_write        : in     vl_logic;
         en_read         : in     vl_logic;

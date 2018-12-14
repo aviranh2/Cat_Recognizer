@@ -10,11 +10,11 @@
 
 `resetall
 `timescale 1ns/10ps
-module RegisterFile(clock, address,en_write,en_read,data_in,data_out,control_reg);
+module RegisterFile(clock,rst, address,en_write,en_read,data_in,data_out,control_reg);
   parameter DATA_WIDTH = 24;
   parameter Addr_Depth = 12;
   
-  input wire clock,en_write,en_read;
+  input wire clock,en_write,en_read,rst;
   input [Addr_Depth-1:0] address;
   input [DATA_WIDTH-1:0] data_in;
   output [DATA_WIDTH-1:0] data_out;
@@ -26,7 +26,14 @@ reg [DATA_WIDTH-1:0] out_val;
 
 always @(posedge clock)
 begin: MAIN_BLOCK
-
+	if(rst)
+	begin
+	registers[0][0] <= 1'b0;
+	
+	end
+	
+	else
+	begin
 	if(en_read)
 		begin
 		out_val <= registers[address];//read from register
@@ -36,8 +43,10 @@ begin: MAIN_BLOCK
 		registers[address] <= data_in;//write to register
 		end
 	else 
+	begin
         out_val <= {DATA_WIDTH{1'bz}};//give nothing in output if not requested
-		
+	end
+	end
 
 end
 

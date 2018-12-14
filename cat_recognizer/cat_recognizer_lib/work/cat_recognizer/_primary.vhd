@@ -3,7 +3,7 @@ use verilog.vl_types.all;
 entity cat_recognizer is
     generic(
         Amba_Word       : integer := 24;
-        Amba_Addr_Depth : integer := 12;
+        Amba_Addr_Depth : integer := 13;
         Weight_precision: integer := 5
     );
     port(

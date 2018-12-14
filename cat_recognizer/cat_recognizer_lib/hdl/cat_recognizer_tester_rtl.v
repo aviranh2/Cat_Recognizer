@@ -23,9 +23,9 @@ module cat_recognizer_tester (PADDR,
 // Local declarations
 
 parameter Amba_Word = 24;
-parameter Amba_Addr_Depth = 12;
+parameter Amba_Addr_Depth = 13;
 parameter Weightrecision = 5;
-parameter file_length = 4095;
+parameter file_length = 4096;
 
 
 output PADDR;
@@ -47,6 +47,7 @@ reg                         clk;
 reg                         rst;
 wire [Amba_Word - 1:0]       PRDATA;
 wire                         CatRecOut;
+integer counter =0;
 
 initial begin
     clk <= 1'b0;
@@ -56,10 +57,12 @@ initial begin
 		PSEL <= 1'b0;
 	PWRITE <= 1'b0;
 	PENABLE <= 1'b0;
+	
 end
 
 initial begin forever
     #5 clk = ~clk;
+	counter = counter+1;
 end
 
 ////////////////////////////////////main test////////////////////////////////////
@@ -87,7 +90,25 @@ write({Amba_Addr_Depth{1'b0}},{{(Amba_Word-1){1'b0}},1'b1});
 PSEL <= 1'b0;
 PWRITE <= 1'b0;
 PENABLE <= 1'b0;
+
 end
+
+initial begin
+#123000
+#10 rst <= 1'b1;
+#10 rst <= 1'b0;
+	PSEL <= 1'b0;
+	PWRITE <= 1'b0;
+	PENABLE <= 1'b0;
+	
+#10 write({Amba_Addr_Depth{1'b0}},{{(Amba_Word-1){1'b0}},1'b0});
+#10 rst <= 1'b1;
+#100 rst <= 1'b0;
+#10 write({Amba_Addr_Depth{1'b0}},{{(Amba_Word-1){1'b0}},1'b1});
+
+end
+
+
 
 ////////////////////////////////////main test////////////////////////////////////
 

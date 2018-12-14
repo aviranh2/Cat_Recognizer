@@ -3,7 +3,7 @@ use verilog.vl_types.all;
 entity cat_recognizer_tb is
     generic(
         Amba_Word       : integer := 24;
-        Amba_Addr_Depth : integer := 12;
+        Amba_Addr_Depth : integer := 13;
         Weightrecision  : integer := 5
     );
     attribute mti_svvh_generic_type : integer;

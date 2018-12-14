@@ -14,7 +14,7 @@ module cat_recognizer_tb;
 
 // Local declarations
 parameter Amba_Word = 24;
-parameter Amba_Addr_Depth = 12;
+parameter Amba_Addr_Depth = 13;
 parameter Weightrecision = 5;
 
 // Internal signal declarations

@@ -3,9 +3,9 @@ use verilog.vl_types.all;
 entity cat_recognizer_tester is
     generic(
         Amba_Word       : integer := 24;
-        Amba_Addr_Depth : integer := 12;
+        Amba_Addr_Depth : integer := 13;
         Weightrecision  : integer := 5;
-        file_length     : integer := 4095
+        file_length     : integer := 4096
     );
     port(
         PADDR           : out    vl_logic_vector;

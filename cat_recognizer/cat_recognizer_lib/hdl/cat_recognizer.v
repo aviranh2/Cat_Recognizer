@@ -20,7 +20,7 @@ rst,
 PRDATA,
 CatRecOut,);
   parameter Amba_Word = 24;
-  parameter Amba_Addr_Depth = 12;
+  parameter Amba_Addr_Depth = 13;
   parameter Weight_precision = 5;
   
   input wire PENABLE,PSEL,PWRITE,clk,rst;
@@ -35,10 +35,14 @@ CatRecOut,);
   wire control_reg;
   wire [3*Weight_precision-1:0] 		weights_bus;
   
-  reg [Amba_Addr_Depth:0] read_address;
+  reg [Amba_Addr_Depth-1:0] read_address;
   reg [Amba_Addr_Depth-1:0] mem_address;
-  
-  integer calculator_delay_counter;
+  reg signed [63:0] last_result;
+  reg last_out;
+  wire signed [63:0] acc_val;
+
+  integer calculator_delay_counter = 0;
+  integer clock_counter = 0;
   reg finish_calc;
   
   assign PRDATA = 24'h000000;
@@ -60,6 +64,7 @@ CatRecOut,);
 	.Addr_Depth(Amba_Addr_Depth))
   pixel_mem(
 	.clock		(clk),
+	.rst		(rst),
 	.en_write	(apb_write_enable),
 	.en_read	(en_read),
 	.address	(mem_address),
@@ -90,24 +95,41 @@ CatRecOut,);
 	.get_result	(finish_calc),
 	.x			(pixels_bus),
 	.w			(weights_bus),
-	.neuron_calculator_out		(CatRecOut)
+	.neuron_calculator_out		(CatRecOut),
+	.acc_val					(acc_val)
 	);
 
 	always @(posedge clk)
 	begin: MAIN_BLOCK
+	clock_counter = clock_counter+1;
 	if(control_reg) // start calc is on
 	begin
-		if(read_address[Amba_Addr_Depth])//finish calc
+		if(read_address[Amba_Addr_Depth-1])//finish calc
 		begin
-			calculator_delay_counter =1;
-			if(calculator_delay_counter == 4)
-				begin
-				en_read 							 <= 1'b0;
-				en_write 						 <= 1'b0;
-				read_address[Amba_Addr_Depth:1]	 	 <= {Amba_Addr_Depth{1'b0}}; //reset read address
-				read_address[0]						 <= 1'b1;
+			if(calculator_delay_counter == 3)
+			begin
 				finish_calc   <=1'b1;
-				end
+				last_result	  <= acc_val;
+				calculator_delay_counter = calculator_delay_counter + 1;	
+			end
+			else if(calculator_delay_counter == 4)
+			begin
+				calculator_delay_counter = calculator_delay_counter + 1;				
+			end
+			else if(calculator_delay_counter == 5)
+			begin
+			last_out<=CatRecOut;
+				calculator_delay_counter = calculator_delay_counter + 1;
+			end
+			else if(calculator_delay_counter == 6)
+			begin
+				en_read 						 <= 1'b0;
+				en_write 						 <= 1'b0;
+				read_address[Amba_Addr_Depth:1]	 <= {Amba_Addr_Depth{1'b0}}; //reset read address
+				read_address[0]					 <= 1'b1;
+				
+				calculator_delay_counter = 0;
+			end
 			else
 				begin
 				calculator_delay_counter = calculator_delay_counter + 1;

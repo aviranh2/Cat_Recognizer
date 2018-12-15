@@ -1,0 +1,18 @@
+//
+// Verilog class cat_recognizer_lib.RandomGenerator
+//
+// Created:
+//          by - amitb.UNKNOWN (DESKTOP-GIFQ7HQ)
+//          at - 15:06:22 15/12/2018
+//
+// using Mentor Graphics HDL Designer(TM) 2012.1 (Build 6)
+//
+
+`resetall
+`timescale 1ns/10ps
+class RandomGenerator;
+
+
+// ### Please start your Verilog code here ### 
+
+endclass

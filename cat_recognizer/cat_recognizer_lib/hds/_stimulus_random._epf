@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom stimulus_random
+DEFAULT_FILE atom stimulus_random.sv

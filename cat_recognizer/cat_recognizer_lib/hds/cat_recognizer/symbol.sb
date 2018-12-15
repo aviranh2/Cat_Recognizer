@@ -16,6 +16,7 @@ suid 9,0
 usingSuid 1
 emptyRow *1 (LEmptyRow
 )
+uid 122,0
 optionalChildren [
 *2 (RefLabelRowHdr
 )
@@ -174,6 +175,7 @@ uid 112,0
 pdm (PhysicalDM
 displayShortBounds 1
 editShortBounds 1
+uid 136,0
 optionalChildren [
 *24 (Sheet
 sheetRow (SheetRow
@@ -197,22 +199,26 @@ litem &1
 pos 3
 dimension 20
 )
+uid 138,0
 optionalChildren [
 *26 (MRCItem
 litem &2
 pos 0
 dimension 20
+uid 139,0
 )
 *27 (MRCItem
 litem &3
 pos 1
 dimension 23
+uid 140,0
 )
 *28 (MRCItem
 litem &4
 pos 2
 hidden 1
 dimension 20
+uid 141,0
 )
 *29 (MRCItem
 litem &15
@@ -277,67 +283,80 @@ fontColor "0,0,0"
 font "Tahoma,10,0"
 textAngle 90
 )
+uid 142,0
 optionalChildren [
 *38 (MRCItem
 litem &5
 pos 0
 dimension 20
+uid 143,0
 )
 *39 (MRCItem
 litem &7
 pos 1
 dimension 50
+uid 144,0
 )
 *40 (MRCItem
 litem &8
 pos 2
 dimension 100
+uid 145,0
 )
 *41 (MRCItem
 litem &9
 pos 3
 dimension 50
+uid 146,0
 )
 *42 (MRCItem
 litem &10
 pos 4
 dimension 100
+uid 147,0
 )
 *43 (MRCItem
 litem &11
 pos 5
 dimension 60
+uid 148,0
 )
 *44 (MRCItem
 litem &12
 pos 6
 dimension 100
+uid 149,0
 )
 *45 (MRCItem
 litem &13
 pos 7
 dimension 50
+uid 150,0
 )
 *46 (MRCItem
 litem &14
 pos 8
 dimension 80
+uid 151,0
 )
 ]
 )
 fixedCol 4
 fixedRow 2
 name "Ports"
+uid 137,0
 vaOverrides [
 ]
 )
 ]
 )
+uid 121,0
 )
 genericsCommonDM (CommonDM
 ldm (LogicalDM
 emptyRow *47 (LEmptyRow
 )
+uid 153,0
 optionalChildren [
 *48 (RefLabelRowHdr
 )
@@ -368,27 +387,28 @@ generic (GiElement
 name "Amba_Word"
 value "24"
 )
-uid 114,0
+uid 175,0
 )
 *58 (LogGeneric
 generic (GiElement
 name "Amba_Addr_Depth"
-value "12"
+value "13"
 )
-uid 116,0
+uid 177,0
 )
 *59 (LogGeneric
 generic (GiElement
-name "Weightrecision"
+name "Weight_precision"
 value "5"
 )
-uid 118,0
+uid 179,0
 )
 ]
 )
 pdm (PhysicalDM
 displayShortBounds 1
 editShortBounds 1
+uid 163,0
 optionalChildren [
 *60 (Sheet
 sheetRow (SheetRow
@@ -412,40 +432,44 @@ litem &47
 pos 3
 dimension 20
 )
+uid 165,0
 optionalChildren [
 *62 (MRCItem
 litem &48
 pos 0
 dimension 20
+uid 166,0
 )
 *63 (MRCItem
 litem &49
 pos 1
 dimension 23
+uid 167,0
 )
 *64 (MRCItem
 litem &50
 pos 2
 hidden 1
 dimension 20
+uid 168,0
 )
 *65 (MRCItem
 litem &57
 pos 0
 dimension 20
-uid 115,0
+uid 176,0
 )
 *66 (MRCItem
 litem &58
 pos 1
 dimension 20
-uid 117,0
+uid 178,0
 )
 *67 (MRCItem
 litem &59
 pos 2
 dimension 20
-uid 119,0
+uid 180,0
 )
 ]
 )
@@ -456,65 +480,73 @@ fontColor "0,0,0"
 font "Tahoma,10,0"
 textAngle 90
 )
+uid 169,0
 optionalChildren [
 *68 (MRCItem
 litem &51
 pos 0
 dimension 20
+uid 170,0
 )
 *69 (MRCItem
 litem &53
 pos 1
 dimension 50
+uid 171,0
 )
 *70 (MRCItem
 litem &54
 pos 2
 dimension 100
+uid 172,0
 )
 *71 (MRCItem
 litem &55
 pos 3
 dimension 50
+uid 173,0
 )
 *72 (MRCItem
 litem &56
 pos 4
 dimension 80
+uid 174,0
 )
 ]
 )
 fixedCol 3
 fixedRow 2
 name "Ports"
+uid 164,0
 vaOverrides [
 ]
 )
 ]
 )
+uid 152,0
 type 1
 )
 VExpander (VariableExpander
 vvMap [
 (vvPair
 variable "HDLDir"
-value "C:\\Users\\amitb\\Desktop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hdl"
+value "C:\\Users\\amitb\\Desktop\\UNIV\\year4\\logi\\temop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hdl"
 )
 (vvPair
 variable "HDSDir"
-value "C:\\Users\\amitb\\Desktop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds"
+value "C:\\Users\\amitb\\Desktop\\UNIV\\year4\\logi\\temop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds"
 )
 (vvPair
 variable "SideDataDesignDir"
-value "C:\\Users\\amitb\\Desktop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds\\cat_recognizer\\symbol.sb.info"
+value "C:\\Users\\amitb\\Desktop\\UNIV\\year4\\logi\\temop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds\\cat_recognizer\\symbol.sb.info"
 )
 (vvPair
 variable "SideDataUserDir"
-value "C:\\Users\\amitb\\Desktop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds\\cat_recognizer\\symbol.sb.user"
+value "C:\\Users\\amitb\\Desktop\\UNIV\\year4\\logi\\temop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds\\cat_recognizer\\symbol.sb.user"
 )
 (vvPair
 variable "SourceDir"
-value "C:\\Users\\amitb\\Desktop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds"
+value "C:\\Users\\amitb\\Desktop\\UNIV\\year4\\logi\\temop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds"
 )
 (vvPair
 variable "appl"
@@ -530,27 +562,27 @@ value "%(unit)_%(view)_config"
 )
 (vvPair
 variable "d"
-value "C:\\Users\\amitb\\Desktop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds\\cat_recognizer"
+value "C:\\Users\\amitb\\Desktop\\UNIV\\year4\\logi\\temop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds\\cat_recognizer"
 )
 (vvPair
 variable "d_logical"
-value "C:\\Users\\amitb\\Desktop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds\\cat_recognizer"
+value "C:\\Users\\amitb\\Desktop\\UNIV\\year4\\logi\\temop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds\\cat_recognizer"
 )
 (vvPair
 variable "date"
-value "29/11/2018"
+value "15/12/2018"
 )
 (vvPair
 variable "day"
-value "Thu"
+value "Sat"
 )
 (vvPair
 variable "day_long"
-value "Thursday"
+value "Saturday"
 )
 (vvPair
 variable "dd"
-value "29"
+value "15"
 )
 (vvPair
 variable "entity_name"
@@ -597,8 +629,12 @@ variable "library_downstream_ModelSimCompiler"
 value "$HDS_PROJECT_DIR/cat_recognizer_lib/work"
 )
 (vvPair
+variable "library_downstream_QuestaSimCompiler"
+value "$HDS_PROJECT_DIR\\cat_recognizer_lib\\work"
+)
+(vvPair
 variable "mm"
-value "11"
+value "12"
 )
 (vvPair
 variable "module_name"
@@ -606,19 +642,19 @@ value "cat_recognizer"
 )
 (vvPair
 variable "month"
-value "Nov"
+value "Dec"
 )
 (vvPair
 variable "month_long"
-value "November"
+value "December"
 )
 (vvPair
 variable "p"
-value "C:\\Users\\amitb\\Desktop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds\\cat_recognizer\\symbol.sb"
+value "C:\\Users\\amitb\\Desktop\\UNIV\\year4\\logi\\temop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds\\cat_recognizer\\symbol.sb"
 )
 (vvPair
 variable "p_logical"
-value "C:\\Users\\amitb\\Desktop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds\\cat_recognizer\\symbol.sb"
+value "C:\\Users\\amitb\\Desktop\\UNIV\\year4\\logi\\temop\\Cat_Recognizer\\cat_recognizer\\cat_recognizer_lib\\hds\\cat_recognizer\\symbol.sb"
 )
 (vvPair
 variable "package_name"
@@ -654,7 +690,7 @@ value "<TBD>"
 )
 (vvPair
 variable "task_QuestaSimPath"
-value "<TBD>"
+value "C:\\questasim64_10.4c\\win64"
 )
 (vvPair
 variable "task_VCSPath"
@@ -674,7 +710,7 @@ value "symbol"
 )
 (vvPair
 variable "time"
-value "13:06:55"
+value "13:05:19"
 )
 (vvPair
 variable "unit"
@@ -703,6 +739,7 @@ value "18"
 ]
 )
 LanguageMgr "Verilog2001LangMgr"
+uid 120,0
 optionalChildren [
 *73 (SymbolBody
 uid 8,0
@@ -1170,9 +1207,9 @@ font "Courier New,8,0"
 xt "0,12000,12500,16000"
 st "Parameter Declarations
 
-Amba_Word       24  
-Amba_Addr_Depth 12  
-Weightrecision  5   
+Amba_Word        24  
+Amba_Addr_Depth  13  
+Weight_precision 5   
 "
 )
 header "Parameter Declarations"
@@ -1185,10 +1222,10 @@ value "24"
 )
 (GiElement
 name "Amba_Addr_Depth"
-value "12"
+value "13"
 )
 (GiElement
-name "Weightrecision"
+name "Weight_precision"
 value "5"
 )
 ]
@@ -1836,6 +1873,6 @@ xt "2000,3000,2000,3000"
 tm "SyDeclarativeTextMgr"
 )
 )
-lastUid 119,0
+lastUid 180,0
 activeModelName "Symbol:CDM"
 )

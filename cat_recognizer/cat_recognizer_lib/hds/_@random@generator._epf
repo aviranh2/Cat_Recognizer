@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom RandomGenerator
+DEFAULT_FILE atom RandomGenerator.svh

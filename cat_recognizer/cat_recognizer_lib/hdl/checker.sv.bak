@@ -1,0 +1,26 @@
+//
+// Verilog Module cat_recognizer_lib.checker
+//
+// Created:
+//          by - amitb.UNKNOWN (DESKTOP-GIFQ7HQ)
+//          at - 13:33:56 15/12/2018
+//
+// using Mentor Graphics HDL Designer(TM) 2012.1 (Build 6)
+//
+
+`resetall
+`timescale 1ns/10ps
+module checker1 #(
+  parameter Amba_Word = 24,
+  parameter Amba_Addr_Depth = 13,
+  parameter Weight_precision = 5
+)
+(
+  cat_recognizer_interface.checkr_coveragr checker_Interface
+);
+
+
+
+// ### Please start your Verilog code here ### 
+
+endmodule

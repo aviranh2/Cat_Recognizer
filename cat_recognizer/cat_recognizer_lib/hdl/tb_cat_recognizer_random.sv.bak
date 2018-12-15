@@ -1,0 +1,35 @@
+//
+// Verilog Module cat_recognizer_lib.tb_cat_recognizer_random
+//
+// Created:
+//          by - amitb.UNKNOWN (DESKTOP-GIFQ7HQ)
+//          at - 15:20:34 15/12/2018
+//
+// using Mentor Graphics HDL Designer(TM) 2012.1 (Build 6)
+//
+
+`resetall
+`timescale 1ns/10ps
+module tb_cat_recognizer_random#(
+  parameter Amba_Word = 24,
+  parameter Amba_Addr_Depth = 13,
+  parameter Weight_precision = 5
+) ;
+
+logic clk = 0;
+always  #10  clk++;
+
+cat_recognizer_interface TbInterface(clk);
+
+cat_recognizer_wrapper#(Amba_Word,Amba_Addr_Depth,Weight_precision) behavioral_cat_recognizer_o(
+.inter(TbInterface.cat)
+);
+
+//stimulus_random #(Amba_Word,Amba_Addr_Depth,Weight_precision) behavioral_cat_recognizer(
+//.stimulus_Interface(TbInterface.stimuls)
+//);
+
+
+
+
+endmodule

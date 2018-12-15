@@ -1,0 +1,77 @@
+//
+// Verilog Module cat_recognizer_lib.stimulus_random
+//
+// Created:
+//          by - amitb.UNKNOWN (DESKTOP-GIFQ7HQ)
+//          at - 13:25:25 15/12/2018
+//
+// using Mentor Graphics HDL Designer(TM) 2012.1 (Build 6)
+//
+
+`resetall
+`timescale 1ns/10ps
+
+import classes::*;
+
+
+module stimulus_random#(  
+  parameter Amba_Word = 24,
+  parameter Amba_Addr_Depth = 13,
+  parameter Weight_precision = 5
+  )
+  (
+  cat_recognizer_interface.stimuls stimulus_Interface
+  );
+  
+ RandomGeneratorExample RadomGeneratorVar;
+
+ reg[Amba_Word-1:0] data_to_write;
+ 
+// clock part
+always 
+begin
+ #5 stimulus_Interface.clk = ~stimulus_Interface.clk;
+
+
+end
+
+initial 
+begin 
+RadomGeneratorVar = new();
+
+stimulus_Interface.clk=1;
+stimulus_Interface.rst = 1;
+#10
+stimulus_Interface.rst = 0;
+
+//begin test
+
+//see how system reacts to long reset
+#50
+stimulus_Interface.rst = 1;
+#10
+stimulus_Interface.rst = 0;
+#10
+stimulus_Interface.rst = 1;
+#10
+stimulus_Interface.rst = 0;
+/*
+#10
+//get random register value
+assert(RadomGeneratorVar.randomize());
+RadomGeneratorVar.print();              //print the data
+data_to_write <= RadomGeneratorVar.write_value;
+
+#10
+//get random register value
+assert(RadomGeneratorVar.randomize());
+RadomGeneratorVar.print();              //print the data
+data_to_write <= RadomGeneratorVar.write_value;
+*/
+end
+
+
+
+
+
+endmodule

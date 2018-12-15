@@ -18,7 +18,7 @@ PWRITE,
 clk,
 rst,
 PRDATA,
-CatRecOut,);
+CatRecOut);
   parameter Amba_Word = 24;
   parameter Amba_Addr_Depth = 13;
   parameter Weight_precision = 5;
@@ -40,7 +40,7 @@ CatRecOut,);
   reg signed [63:0] last_result;
   reg last_out;
   wire signed [63:0] acc_val;
-
+  reg temp;
   integer calculator_delay_counter = 0;
   integer clock_counter = 0;
   reg finish_calc;
@@ -157,6 +157,7 @@ CatRecOut,);
 		en_read 							 <= 1'b0;
 		en_write 							 <= apb_write_enable;
 		finish_calc   <=1'b0;
+		temp <= 1'b0;
 		end
 	end
 	

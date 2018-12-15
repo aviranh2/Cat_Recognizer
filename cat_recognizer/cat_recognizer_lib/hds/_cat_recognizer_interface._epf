@@ -1,0 +1,2 @@
+DEFAULT_ARCHITECTURE atom cat_recognizer_interface
+DEFAULT_FILE atom cat_recognizer_interface.sv

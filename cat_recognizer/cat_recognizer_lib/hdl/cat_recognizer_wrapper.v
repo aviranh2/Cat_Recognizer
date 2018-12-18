@@ -15,7 +15,7 @@ module cat_recognizer_wrapper#(  parameter Amba_Word = 24,
   parameter Weight_precision = 5
   )
   (
-  cat_recignizer_interface.cat inter
+  cat_recognizer_interface.cat inter
   );
   
   

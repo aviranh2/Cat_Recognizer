@@ -35,7 +35,7 @@ always @(posedge pclock or negedge rst) begin : SYNCHRONOUS_BLOCK
 		end
 end
 
-always @(penable or psel or pwrite) begin : COMBINATORIAL_BLOCK
+always @(penable or psel or pwrite or pclock) begin : COMBINATORIAL_BLOCK
 case (current_state)
   IDLE: begin 
         if(psel & pwrite)

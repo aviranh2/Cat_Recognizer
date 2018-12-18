@@ -26,6 +26,32 @@ covergroup cg @(posedge coverager_Interface.clk);
 	bins low = {0};
 }
 
+  PSEL_counter      : coverpoint coverager_Interface.PSEL
+{
+	bins high = {1};
+	bins low = {0};
+}
+
+  PENABLE_counter      : coverpoint coverager_Interface.PENABLE
+{
+	bins high = {1};
+	bins low = {0};
+}
+
+  PWRITE_counter      : coverpoint coverager_Interface.PWRITE
+{
+	bins high = {1};
+	bins low = {0};
+}
+
+ address : coverpoint coverager_Interface.PADDR 
+ {
+	bins low = {[1500:0]};	   
+	bins med = {[3000:1501]};	   
+	bins high = {[4096:3001]};	   
+
+ }
+
 endgroup
 
 

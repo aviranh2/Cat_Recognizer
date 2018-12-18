@@ -23,7 +23,7 @@ module NeuronCalculator(x,w,clock,reset,enable,get_result,neuron_calculator_out,
 	
 	reg output_result,start_to_work;
 	wire signed [31:0] pixelw1,pixelw2,pixelw3;
-	reg signed [63:0] acc,last_acc;
+	reg signed [63:0] acc,last_acc,sum_ans;
 	reg [15:0] w_ext1,w_ext2,w_ext3;
 	reg [7:0]	x1,x2,x3;
 	
@@ -31,6 +31,7 @@ module NeuronCalculator(x,w,clock,reset,enable,get_result,neuron_calculator_out,
 	always @(posedge clock)
 	begin: accomulator_block
 	  b <= b_in;
+	  sum_ans<= last_acc + b;
 	if(reset)
 		begin
 		start_to_work <= 1'b0;
@@ -40,7 +41,7 @@ module NeuronCalculator(x,w,clock,reset,enable,get_result,neuron_calculator_out,
 	else if (get_result)
 		begin
 		start_to_work <= 1'b0;
-		output_result <= (last_acc + b > 0);
+		output_result <= !sum_ans[63];//(last_acc + b > 0);
 		end
 	else if(start_to_work)
 		begin

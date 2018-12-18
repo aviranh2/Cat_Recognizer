@@ -10,17 +10,33 @@
 
 `resetall
 `timescale 1ns/10ps
-module checker1 #(
+module Checker#(
   parameter Amba_Word = 24,
   parameter Amba_Addr_Depth = 13,
   parameter Weight_precision = 5
 )
 (
-  cat_recognizer_interface.checkr_coveragr checker_Interface
+  cat_recognizer_interface.checkr_coveragr checker_Interface,
+  [DATA_WIDTH-1:0] registers[(2**Addr_Depth)-1:0]
 );
 
 
+integer  clocks_counter=0;
 
-// ### Please start your Verilog code here ### 
+  property reset_active;
+            @( checker_Interface.rst) (checker_Interface.rst==1) |-> (checker_Interface.CatRecOut!=1);
+  endproperty
 
+  assert property(reset_active)
+  else $error("problem with reset");
+  cover property (reset_active);
+  
+  always @(posedge checker_Interface.clk)
+  begin
+  clocks_counter = clocks_counter + 1;
+  end
+  
+  
+	
+	
 endmodule

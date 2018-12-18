@@ -29,7 +29,12 @@ stimulus_random #(Amba_Word,Amba_Addr_Depth,Weight_precision) stimulus1(
 );
 
 Checker #(Amba_Word,Amba_Addr_Depth,Weight_precision) checker1(
-.checker_Interface(TbInterface)
+.checker_Interface(TbInterface),
+.registers(behavioral_cat_recognizer_o.behavioral_cat_recognizer.pixel_mem.registers),
+.M(behavioral_cat_recognizer_o.behavioral_cat_recognizer.weight_mem.M),
+.read_address(behavioral_cat_recognizer_o.behavioral_cat_recognizer.read_address),
+.acc_val(behavioral_cat_recognizer_o.behavioral_cat_recognizer.acc_val),
+.last_result(behavioral_cat_recognizer_o.behavioral_cat_recognizer.last_result)
 );
 
 coverager #(Amba_Word,Amba_Addr_Depth,Weight_precision) coverager1(

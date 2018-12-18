@@ -26,6 +26,19 @@ covergroup cg @(posedge coverager_Interface.clk);
 	bins low = {0};
 }
 
+ address : coverpoint coverager_Interface.PADDR 
+ {
+ /*
+       bins low    = {0,1000};
+	   bins med0	={1001,2000};	
+       bins med1    = {2001,3000};
+       bins high   = {3001,4096};   //{3001,4096};
+*/
+bins address_bins[] = {[0:(`Amba_Addr_Depth-1)]};	   
+ }
+
 endgroup
 
+
+cg cov = new();
 endmodule

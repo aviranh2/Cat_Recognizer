@@ -1,68 +1,32 @@
 # vsim -f hds_args.tmp -foreign "hdsInit C:/MentorGraphics/HDS_2012.1/resources/downstream/modelsim/ModelSim_64Bit.dll" -pli ""C:/MentorGraphics/HDS_2012.1/resources/downstream/modelsim/ModelSim_64Bit.dll"" 
-# Start time: 20:26:54 on Dec 15,2018
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Start time: 20:54:39 on Dec 18,2018
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
 # 
-# ** Note: (vsim-3865) Due to PLI being present, full design access is being specified.
-# 
+# Refreshing C:/Users/amitb/Desktop/UNIV/year4/logi/temop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/work.tb_cat_recognizer_random
 # Loading sv_std.std
-# Loading work.tb_cat_recognizer_random(fast)
-# Loading work.cat_recognizer_interface(fast__1)
-# Loading work.cat_recognizer_wrapper(fast)
-# Loading work.cat_recognizer(fast)
-# Loading work.fsm_apb(fast)
-# Loading work.RegisterFile(fast)
-# Loading work.weights_memory(fast)
-# Loading work.NeuronCalculator(fast)
-# Loading work.Neuron(fast)
-# Loading work.classes(fast)
-# Loading work.stimulus_random_sv_unit(fast)
-# Loading work.stimulus_random(fast)
-# Loading work.Checker(fast)
-# Loading work.coverager(fast)
+# Loading cat_recognizer_lib.tb_cat_recognizer_random
+# Loading cat_recognizer_lib.cat_recognizer_interface
+# Loading cat_recognizer_lib.cat_recognizer_wrapper
+# Loading cat_recognizer_lib.cat_recognizer
+# Loading cat_recognizer_lib.fsm_apb
+# Loading cat_recognizer_lib.RegisterFile
+# Loading cat_recognizer_lib.weights_memory
+# Loading cat_recognizer_lib.NeuronCalculator
+# Loading cat_recognizer_lib.Neuron
+# Loading cat_recognizer_lib.classes
+# Loading cat_recognizer_lib.stimulus_random_sv_unit
+# Loading cat_recognizer_lib.stimulus_random
+# Refreshing C:/Users/amitb/Desktop/UNIV/year4/logi/temop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/work.Checker
+# Loading cat_recognizer_lib.Checker
+# Loading cat_recognizer_lib.coverager
 # ** Warning: (vsim-3015) C:/Users/amitb/Desktop/UNIV/year4/logi/temop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/hdl/cat_recognizer.v(79): [PCDPC] - Port size (13) does not match connection size (32) for port 'address'. The port definition is at: C:/Users/amitb/Desktop/UNIV/year4/logi/temop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/hdl/weights_memory.v(13).
 #    Time: 0 ns  Iteration: 0  Instance: /tb_cat_recognizer_random/behavioral_cat_recognizer_o/behavioral_cat_recognizer/weight_mem File: C:/Users/amitb/Desktop/UNIV/year4/logi/temop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/hdl/weights_memory.v
 # Loading C:/MentorGraphics/HDS_2012.1/resources/downstream/modelsim/ModelSim_64Bit.dll
-add wave -position insertpoint sim:/tb_cat_recognizer_random/TbInterface/*
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-# 
-#           File in use by: amitb  Hostname: DESKTOP-GIFQ7HQ  ProcessID: 15180
-# 
-#           Attempting to use alternate WLF file "./wlftin9i8k".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-# 
-#           Using alternate file: ./wlftin9i8k
-# 
-add wave -position insertpoint  \
-sim:/tb_cat_recognizer_random/stimulus1/data_to_write
-add wave -position insertpoint  \
-sim:/tb_cat_recognizer_random/behavioral_cat_recognizer_o/behavioral_cat_recognizer/pixel_mem/registers
 run
 # value = 38c0c4
 # value = 1c81e3
 # 0
 # 
-restart
-# ** Note: (vsim-8009) Loading existing optimized design _opt1
-# 
-# Loading work.tb_cat_recognizer_random(fast)
-# Loading work.cat_recognizer_interface(fast__1)
-# Loading work.cat_recognizer_wrapper(fast)
-# Loading work.cat_recognizer(fast)
-# Loading work.fsm_apb(fast)
-# Loading work.RegisterFile(fast)
-# Loading work.weights_memory(fast)
-# Loading work.NeuronCalculator(fast)
-# Loading work.Neuron(fast)
-# Loading work.classes(fast)
-# Loading work.stimulus_random_sv_unit(fast)
-# Loading work.stimulus_random(fast)
-# Loading work.Checker(fast)
-# Loading work.coverager(fast)
-# ** Warning: (vsim-3015) C:/Users/amitb/Desktop/UNIV/year4/logi/temop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/hdl/cat_recognizer.v(79): [PCDPC] - Port size (13) does not match connection size (32) for port 'address'. The port definition is at: C:/Users/amitb/Desktop/UNIV/year4/logi/temop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/hdl/weights_memory.v(13).
-#    Time: 0 ns  Iteration: 0  Instance: /tb_cat_recognizer_random/behavioral_cat_recognizer_o/behavioral_cat_recognizer/weight_mem File: C:/Users/amitb/Desktop/UNIV/year4/logi/temop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/hdl/weights_memory.v
-# Loading C:/MentorGraphics/HDS_2012.1/resources/downstream/modelsim/ModelSim_64Bit.dll
 run
-# value = 38c0c4
-# value = 1c81e3
-# End time: 20:38:59 on Dec 15,2018, Elapsed time: 0:12:05
-# Errors: 0, Warnings: 4
+# 0
+# 

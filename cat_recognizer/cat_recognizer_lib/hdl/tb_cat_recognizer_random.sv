@@ -10,7 +10,7 @@
 
 `resetall
 `timescale 1ns/10ps
-module tb_cat_recognizer_random#(
+module tb_CatRecognizer#(
   parameter Amba_Word = 24,
   parameter Amba_Addr_Depth = 13,
   parameter Weight_precision = 5
@@ -34,7 +34,8 @@ Checker #(Amba_Word,Amba_Addr_Depth,Weight_precision) checker1(
 .M(behavioral_cat_recognizer_o.behavioral_cat_recognizer.weight_mem.M),
 .read_address(behavioral_cat_recognizer_o.behavioral_cat_recognizer.read_address),
 .acc_val(behavioral_cat_recognizer_o.behavioral_cat_recognizer.acc_val),
-.last_result(behavioral_cat_recognizer_o.behavioral_cat_recognizer.last_result)
+.last_result(behavioral_cat_recognizer_o.behavioral_cat_recognizer.last_result),
+.last_out(behavioral_cat_recognizer_o.behavioral_cat_recognizer.last_out)
 );
 
 coverager #(Amba_Word,Amba_Addr_Depth,Weight_precision) coverager1(

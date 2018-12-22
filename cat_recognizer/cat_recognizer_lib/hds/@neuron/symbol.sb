@@ -419,7 +419,7 @@ value "C:\\Users\\amitb\\Desktop\\UNIV\\year4\\logi\\temop\\Cat_Recognizer\\cat_
 )
 (vvPair
 variable "date"
-value "08/12/2018"
+value "22/12/2018"
 )
 (vvPair
 variable "day"
@@ -431,7 +431,7 @@ value "Saturday"
 )
 (vvPair
 variable "dd"
-value "08"
+value "22"
 )
 (vvPair
 variable "entity_name"
@@ -475,6 +475,10 @@ value "$HDS_PROJECT_DIR/cat_recognizer_lib/designcheck"
 )
 (vvPair
 variable "library_downstream_ModelSimCompiler"
+value "$HDS_PROJECT_DIR/cat_recognizer_lib/work"
+)
+(vvPair
+variable "library_downstream_QuestaSimCompiler"
 value "$HDS_PROJECT_DIR/cat_recognizer_lib/work"
 )
 (vvPair
@@ -535,7 +539,7 @@ value "<TBD>"
 )
 (vvPair
 variable "task_QuestaSimPath"
-value "<TBD>"
+value "C:\\questasim64_10.4c\\win64"
 )
 (vvPair
 variable "task_VCSPath"
@@ -555,7 +559,7 @@ value "symbol"
 )
 (vvPair
 variable "time"
-value "13:15:08"
+value "10:11:22"
 )
 (vvPair
 variable "unit"
@@ -621,8 +625,7 @@ va (VaSet
 font "Courier New,8,0"
 )
 xt "2000,4800,20500,5600"
-st "input               wire [15:0] w;
-"
+st "input               wire [15:0] w;"
 )
 thePort (LogicalPort
 lang 5
@@ -667,8 +670,7 @@ va (VaSet
 font "Courier New,8,0"
 )
 xt "2000,4000,14500,4800"
-st "input  wire [7:0]   x;
-"
+st "input  wire [7:0]   x;"
 )
 thePort (LogicalPort
 lang 5
@@ -714,8 +716,7 @@ va (VaSet
 font "Courier New,8,0"
 )
 xt "2000,5600,19000,6400"
-st "output wire [31:0]  neuron_out;
-"
+st "output wire [31:0]  neuron_out;"
 )
 thePort (LogicalPort
 lang 5
@@ -1425,6 +1426,6 @@ xt "2000,3000,2000,3000"
 tm "SyDeclarativeTextMgr"
 )
 )
-lastUid 133,0
+lastUid 155,0
 activeModelName "Symbol:CDM"
 )

@@ -113,7 +113,7 @@ stimulus_Interface.PENABLE <= 1'b0;
 
 
 //now we will calculate the real pictures so we can check if the values are correct
-for(j = 0; j<=40;j = j + 1)
+for(j = 0; j<=39;j = j + 1)
 begin
 #41000 reset_to_load_new_picture();
 write_address[Amba_Addr_Depth-1:1] = {Amba_Addr_Depth{1'b0}}; //reset read address

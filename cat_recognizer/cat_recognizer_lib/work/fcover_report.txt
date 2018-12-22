@@ -1,0 +1,87 @@
+COVERGROUP COVERAGE:
+-----------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal    Status               
+                                                                                              
+-----------------------------------------------------------------------------------------------
+ TYPE /tb_CatRecognizer/coverager1/cg                  100.0%        100    Covered              
+    covered/total bins:                                    11         11                      
+    missing/total bins:                                     0         11                      
+    % Hit:                                             100.0%        100                      
+    Coverpoint cg::rst_counter                         100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+    Coverpoint cg::PSEL_counter                        100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+    Coverpoint cg::PENABLE_counter                     100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+    Coverpoint cg::PWRITE_counter                      100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+    Coverpoint cg::address                             100.0%        100    Covered              
+        covered/total bins:                                 3          3                      
+        missing/total bins:                                 0          3                      
+        % Hit:                                         100.0%        100                      
+ Covergroup instance \/tb_CatRecognizer/coverager1/cov  
+                                                       100.0%        100    Covered              
+    covered/total bins:                                    11         11                      
+    missing/total bins:                                     0         11                      
+    % Hit:                                             100.0%        100                      
+    Coverpoint rst_counter                             100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+        bin high                                          152          1    Covered              
+        bin low                                        199848          1    Covered              
+    Coverpoint PSEL_counter                            100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+        bin high                                       138157          1    Covered              
+        bin low                                         61834          1    Covered              
+    Coverpoint PENABLE_counter                         100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+        bin high                                        69070          1    Covered              
+        bin low                                        130921          1    Covered              
+    Coverpoint PWRITE_counter                          100.0%        100    Covered              
+        covered/total bins:                                 2          2                      
+        missing/total bins:                                 0          2                      
+        % Hit:                                         100.0%        100                      
+        bin high                                       138157          1    Covered              
+        bin low                                         61834          1    Covered              
+    Coverpoint address                                 100.0%        100    Covered              
+        covered/total bins:                                 3          3                      
+        missing/total bins:                                 0          3                      
+        % Hit:                                         100.0%        100                      
+        bin low                                        112909          1    Covered              
+        bin med                                         51000          1    Covered              
+        bin high                                        36080          1    Covered              
+
+TOTAL COVERGROUP COVERAGE: 100.0%  COVERGROUP TYPES: 1
+
+DIRECTIVE COVERAGE:
+---------------------------------------------------------------------------------------------
+Name                                     Design Design   Lang File(Line)      Count Status    
+                                         Unit   UnitType                                      
+---------------------------------------------------------------------------------------------
+/tb_CatRecognizer/checker1/cover__valid_output 
+                                         Checker Verilog  SVA  C:/Users/amitb/Desktop/UNIV/year4/logi/temop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/hdl/checker.sv(73)
+                                                                                 60 Covered   
+/tb_CatRecognizer/checker1/cover__valid_acc_val 
+                                         Checker Verilog  SVA  C:/Users/amitb/Desktop/UNIV/year4/logi/temop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/hdl/checker.sv(69)
+                                                                              61425 Covered   
+/tb_CatRecognizer/checker1/cover__valid_reg_value_write 
+                                         Checker Verilog  SVA  C:/Users/amitb/Desktop/UNIV/year4/logi/temop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/hdl/checker.sv(65)
+                                                                              69070 Covered   
+/tb_CatRecognizer/checker1/cover__reset_active 
+                                         Checker Verilog  SVA  C:/Users/amitb/Desktop/UNIV/year4/logi/temop/Cat_Recognizer/cat_recognizer/cat_recognizer_lib/hdl/checker.sv(61)
+                                                                                 18 Covered   
+
+TOTAL DIRECTIVE COVERAGE: 100.0%  COVERS: 4

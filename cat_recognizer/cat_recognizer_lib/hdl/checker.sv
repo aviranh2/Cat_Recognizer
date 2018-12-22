@@ -21,7 +21,8 @@ module Checker#(
   input reg signed  [3*Weight_precision-1:0] M[(2**Amba_Addr_Depth)-1:0],
   input  [Amba_Addr_Depth-1:0] read_address,
   input  [63:0] acc_val,
-  input reg signed [63:0] last_result
+  input reg signed [63:0] last_result,
+  input last_out
 
 
 );
@@ -137,9 +138,13 @@ if(calc_counter >0)
 begin
 		if(calc_counter == 4096)
 		begin
+			$display("acc = %d,cat_out = %d",last_result,last_out);
+		
+		
 			calc_counter = 0;
 			calculated_acc_val = 0;
 			finish = 1'b1;
+			
 			/*
 			for(int i = 1 ; i <=calc_counter ; i ++)
 			begin
